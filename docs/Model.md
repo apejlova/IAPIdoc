@@ -12,13 +12,13 @@ There are several methods available for user - PASSWORD, SMS, CM, ACTIVATION_COD
 
 State of the method is prioritized over state of the instance. The change of the method state does not influence the state of its instance(s) and vice versa. The only exception is that with method activation all usable instances are deactivated. You must have both method and instance active to be able to perform transaction operations.
 
-Method state diagram
+#### Method state diagram
 
-[[images/method-state-diag.png]]
+![Method state diagram](../assets/images/method-state-diag.png)
 
-Instance state diagram
+#### Instance state diagram
 
-[[images/instance-state-diag.png]]
+![Instance state diagram](../assets/images/instance-state-diag.png)
 
 
 ### Blocking rules

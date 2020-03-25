@@ -640,11 +640,16 @@ definitions:
     type: object
     properties:
       instanceInfo:
-        type: string
+        type: object
+        properties:
+          instanceId: string
+          state: string
+          instanceName: string
         example:
-          instanceId: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
-          state: ACTIVE
-          instanceName: Swagger instance test name
+          value:
+            instanceId: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+            state: ACTIVE
+            instanceName: Swagger instance test name
         allowEmptyValue: false
     title: ActivateInstanceResponse
   ActivateMethodRequest:
