@@ -1,0 +1,1580 @@
+swagger: '2.0'
+info:
+  title: Product IAPI APIs v1
+  version: '1.0'
+  description: This is a specification of APIs of IDPort version IAPI.
+  contact: {}
+host: 'localhost'
+basePath: /case-iapi/v1
+schemes:
+  - http
+produces:
+  - application/json
+consumes:
+  - application/json
+tags:
+  - IAPI REST
+paths:
+  /v1/activateInstance:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: activateInstance
+      operationId: activateInstanceUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/ActivateInstanceRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendActivateInstanceResponse'
+  /v1/activateMethod:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: activateMethod
+      operationId: activateMethodUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/ActivateMethodRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendActivateMethodResponse'
+  /v1/activationCode:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: getActivationCode
+      operationId: getActivationCodeUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/GetActivationCodeRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendGetActivationCodeResponse'
+  /v1/blockInstance:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: blockInstance
+      operationId: blockInstanceUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/BlockInstanceRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendBlockInstanceResponse'
+  /v1/blockMethod:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: blockMethod
+      operationId: blockMethodUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/BlockMethodRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendBlockMethodResponse'
+  /v1/cancelTransaction:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: cancelTransaction
+      operationId: cancelTransactionUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/CancelTransactionRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendCancelTransactionResponse'
+  /v1/deactivateInstance:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: deactivateInstance
+      operationId: deactivateInstanceUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/DeactivateInstanceRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendDeactivateInstanceResponse'
+  /v1/deactivateMethod:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: deactivateMethod
+      operationId: deactivateMethodUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/DeactivateMethodRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendDeactivateMethodResponse'
+  /v1/initiateInstance:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: initiateInstance
+      operationId: initiateInstanceUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/InitiateInstanceRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendInitiateInstanceResponse'
+  /v1/initiateTransaction:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: initiateTransaction
+      operationId: initiateTransactionUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/InitiateTransactionRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendInitiateTransactionResponse'
+  /v1/methodInfo:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: getMethodInfo
+      operationId: getMethodInfoUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/GetMethodInfoRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendGetMethodInfoResponse'
+  /v1/methodParams:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: getMethodParams
+      operationId: getMethodParamsUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/GetMethodParamsRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendGetMethodParamsResponse'
+  /v1/ping:
+    get:
+      tags:
+        - case-iapi-rest-controller
+      summary: ping
+      operationId: pingUsingGET
+      produces:
+        - application/json;charset=UTF-8
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/IdPortCaseResponse'
+  /v1/setInstanceProperty:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: setInstanceProperty
+      operationId: setInstancePropertyUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/SetInstancePropertyRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendSetInstancePropertyResponse'
+  /v1/transactionState:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: getTransactionState
+      operationId: getTransactionStateUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/GetTransactionStateRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendGetTransactionStateResponse'
+  /v1/unblockInstance:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: unblockInstance
+      operationId: unblockInstanceUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/UnblockInstanceRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendUnblockInstanceResponse'
+  /v1/unblockMethod:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: unblockMethod
+      operationId: unblockMethodUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/UnblockMethodRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendUnblockMethodResponse'
+  /v1/verifyTransaction:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: verifyTransaction
+      operationId: verifyTransactionUsingPOST
+      consumes:
+        - application/json;charset=UTF-8
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          description: X-CHANNEL-ID
+          required: false
+          type: string
+          default: '1'
+        - name: X-TRN-ID
+          in: header
+          description: X-TRN-ID
+          required: false
+          type: string
+          default: '2'
+        - in: body
+          name: req
+          description: req
+          required: true
+          schema:
+            $ref: '#/definitions/VerifyTransactionRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JSendVerifyTransactionResponse'
+definitions:
+  ActivateInstanceRequest:
+    type: object
+    required:
+      - instanceId
+      - methodType
+      - muid
+    properties:
+      instanceId:
+        type: string
+        example: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+        allowEmptyValue: false
+      methodType:
+        type: string
+        example: PASSWORD
+        allowEmptyValue: false
+        enum:
+          - PASSWORD
+          - ACTIVATION_CODE
+          - SMS
+          - CM
+      muid:
+        type: string
+        example: cg2t1
+        allowEmptyValue: false
+      tenant:
+        type: string
+        example: Monet+
+        allowEmptyValue: true
+    title: ActivateInstanceRequest
+  ActivateInstanceResponse:
+    type: object
+    properties:
+      instanceInfo:
+        type: string
+        example:
+          instanceId: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+          state: ACTIVE
+          instanceName: Swagger instance test name
+        allowEmptyValue: false
+    title: ActivateInstanceResponse
+  ActivateMethodRequest:
+    type: object
+    required:
+      - methodType
+      - muid
+    properties:
+      methodSpecific:
+        type: object
+        example:
+          algType: 2
+        allowEmptyValue: true
+      methodType:
+        type: string
+        example: PASSWORD
+        allowEmptyValue: false
+        enum:
+          - PASSWORD
+          - ACTIVATION_CODE
+          - SMS
+          - CM
+      muid:
+        type: string
+        example: cg2t1
+        allowEmptyValue: false
+      tenant:
+        type: string
+        example: Monet+
+        allowEmptyValue: true
+    title: ActivateMethodRequest
+  ActivateMethodResponse:
+    type: object
+    properties:
+      methodSpecific:
+        type: string
+        example:
+          algType: 2
+          salt: 5dpn/LfE8uoVqoTc+v5ujE1ftnVxhtJ0GkCPZQr37pY=
+        allowEmptyValue: false
+    title: ActivateMethodResponse
+  BlockInstanceRequest:
+    type: object
+    required:
+      - instanceId
+      - methodType
+      - muid
+    properties:
+      instanceId:
+        type: string
+        example: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+        allowEmptyValue: false
+      methodType:
+        type: string
+        example: PASSWORD
+        allowEmptyValue: false
+        enum:
+          - PASSWORD
+          - ACTIVATION_CODE
+          - SMS
+          - CM
+      muid:
+        type: string
+        example: cg2t1
+        allowEmptyValue: false
+      tenant:
+        type: string
+        example: Monet+
+        allowEmptyValue: true
+    title: BlockInstanceRequest
+  BlockInstanceResponse:
+    type: object
+    title: BlockInstanceResponse
+  BlockMethodRequest:
+    type: object
+    required:
+      - methodType
+      - muid
+    properties:
+      methodType:
+        type: string
+        example: PASSWORD
+        allowEmptyValue: false
+        enum:
+          - PASSWORD
+          - ACTIVATION_CODE
+          - SMS
+          - CM
+      muid:
+        type: string
+        example: cg2t1
+        allowEmptyValue: false
+      tenant:
+        type: string
+        example: Monet+
+        allowEmptyValue: true
+    title: BlockMethodRequest
+  BlockMethodResponse:
+    type: object
+    title: BlockMethodResponse
+  CancelTransactionRequest:
+    type: object
+    required:
+      - caseId
+    properties:
+      caseId:
+        type: string
+        format: byte
+        example: >-
+          41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+        allowEmptyValue: false
+      muid:
+        type: string
+        example: cg2t1
+        description: it is empty for the case of an anonymous transaction
+        allowEmptyValue: true
+      reason:
+        type: string
+        example: SWAGGER test
+        allowEmptyValue: true
+    title: CancelTransactionRequest
+  CancelTransactionResponse:
+    type: object
+    title: CancelTransactionResponse
+  Chap:
+    type: object
+    required:
+      - authProtocol
+      - challenge
+      - response
+      - username
+    properties:
+      authProtocol:
+        type: integer
+        format: int64
+        example: 1
+        allowEmptyValue: false
+      challenge:
+        type: string
+        format: byte
+        example: MzM5MjA1
+        allowEmptyValue: false
+      response:
+        type: string
+        format: byte
+        example: MzM5MjA1
+        allowEmptyValue: false
+      username:
+        type: string
+        example: cg2t1
+        allowEmptyValue: false
+    title: Chap
+  DeactivateInstanceRequest:
+    type: object
+    required:
+      - instanceId
+      - methodType
+      - muid
+    properties:
+      instanceId:
+        type: string
+        example: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+        allowEmptyValue: false
+      methodType:
+        type: string
+        example: PASSWORD
+        allowEmptyValue: false
+        enum:
+          - PASSWORD
+          - ACTIVATION_CODE
+          - SMS
+          - CM
+      muid:
+        type: string
+        example: cg2t1
+        allowEmptyValue: false
+      tenant:
+        type: string
+        example: Monet+
+        allowEmptyValue: true
+    title: DeactivateInstanceRequest
+  DeactivateInstanceResponse:
+    type: object
+    title: DeactivateInstanceResponse
+  DeactivateMethodRequest:
+    type: object
+    required:
+      - methodType
+      - muid
+    properties:
+      methodType:
+        type: string
+        example: PASSWORD
+        allowEmptyValue: false
+        enum:
+          - PASSWORD
+          - ACTIVATION_CODE
+          - SMS
+          - CM
+      muid:
+        type: string
+        example: cg2t1
+        allowEmptyValue: false
+      tenant:
+        type: string
+        example: Monet+
+        allowEmptyValue: true
+    title: DeactivateMethodRequest
+  DeactivateMethodResponse:
+    type: object
+    title: DeactivateMethodResponse
+  ErrorData:
+    type: object
+    properties:
+      data:
+        type: object
+      wrapperName:
+        type: string
+    title: ErrorData
+  GetActivationCodeRequest:
+    type: object
+    required:
+      - muid
+    properties:
+      activationType:
+        type: string
+        example: FULL
+        allowEmptyValue: true
+        enum:
+          - FULL
+          - CONFIRM
+      muid:
+        type: string
+        example: cg2t1
+        allowEmptyValue: false
+      tenant:
+        type: string
+        example: Monet+
+        allowEmptyValue: true
+    title: GetActivationCodeRequest
+  GetActivationCodeResponse:
+    type: object
+    properties:
+      code:
+        type: string
+        example: 240537
+        allowEmptyValue: false
+      qrData:
+        type: string
+        format: byte
+        example: UVI1fDF8QTAzNDk0QkV8Y2cydDFAbW9uZXRwbHVzLmN6fDIzNzQyMQ==
+        allowEmptyValue: false
+      userId:
+        type: string
+        example: cg2t1@monetplus.cz
+        allowEmptyValue: false
+    title: GetActivationCodeResponse
+  GetMethodInfoRequest:
+    type: object
+    required:
+      - methodTypes
+      - muid
+    properties:
+      methodTypes:
+        type: array
+        example:
+          - PASSWORD
+        allowEmptyValue: false
+        items:
+          type: string
+          enum:
+            - PASSWORD
+            - ACTIVATION_CODE
+            - SMS
+            - CM
+      muid:
+        type: string
+        example: cg2t1
+        allowEmptyValue: false
+      tenant:
+        type: string
+        example: Monet+
+        allowEmptyValue: true
+    title: GetMethodInfoRequest
+  GetMethodInfoResponse:
+    type: object
+    properties:
+      methodInfo:
+        type: array
+        example:
+          - methodType: PASSWORD
+            state: ACTIVE
+            activeInstances: 1
+            instances:
+              - instanceId: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+                state: ACTIVE
+                instanceName: Swagger instance test name
+              - instanceId: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwb'
+                state: INITIATED
+                instanceName: Swagger instance test name 2
+            failedAttempts: 0
+            remainingAttempts: 3
+        allowEmptyValue: false
+        items:
+          $ref: '#/definitions/MethodInfo'
+    title: GetMethodInfoResponse
+  GetMethodParamsRequest:
+    type: object
+    required:
+      - methodType
+      - muid
+    properties:
+      methodType:
+        type: string
+        example: PASSWORD
+        allowEmptyValue: false
+        enum:
+          - PASSWORD
+          - ACTIVATION_CODE
+          - SMS
+          - CM
+      muid:
+        type: string
+        example: cg2t1
+        allowEmptyValue: false
+      tenant:
+        type: string
+        example: Monet+
+        allowEmptyValue: true
+    title: GetMethodParamsRequest
+  GetMethodParamsResponse:
+    type: object
+    properties:
+      methodSpecific:
+        type: object
+        example:
+          algType: 2
+          salt: 5dpn/LfE8uoVqoTc+v5ujE1ftnVxhtJ0GkCPZQr37pY=
+        allowEmptyValue: false
+    title: GetMethodParamsResponse
+  GetTransactionStateRequest:
+    type: object
+    required:
+      - caseId
+    properties:
+      caseId:
+        type: string
+        format: byte
+        example: >-
+          41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+        allowEmptyValue: false
+      muid:
+        type: string
+        example: cg2t1
+        description: it is empty for the case of an anonymous transaction
+        allowEmptyValue: true
+    title: GetTransactionStateRequest
+  GetTransactionStateResponse:
+    type: object
+    properties:
+      muid:
+        type: string
+      state:
+        type: string
+        example: INITIATED
+        allowEmptyValue: false
+        enum:
+          - INITIATED
+          - LOADED
+          - EXPIRED
+          - AUTHORIZED
+          - FAILED
+          - CANCELED
+    title: GetTransactionStateResponse
+  IdPortCaseResponse:
+    type: object
+    properties:
+      result:
+        $ref: '#/definitions/Result'
+    title: IdPortCaseResponse
+  InitiateInstanceRequest:
+    type: object
+    required:
+      - methodType
+      - muid
+    properties:
+      methodSpecific:
+        type: object
+        example:
+          value: BRS2IIsHA/vX+burYewoRgi+DMXvOb+wabBiUMtNNPM=
+        description: depends on MethodType
+        allowEmptyValue: false
+      methodType:
+        type: string
+        example: PASSWORD
+        allowEmptyValue: false
+        enum:
+          - PASSWORD
+          - ACTIVATION_CODE
+          - SMS
+          - CM
+      muid:
+        type: string
+        example: cg2t1
+        allowEmptyValue: false
+      name:
+        type: string
+        example: Swagger instance test name
+        allowEmptyValue: true
+      tenant:
+        type: string
+        example: Monet+
+        allowEmptyValue: true
+      validTo:
+        type: string
+        format: date-time
+        example: '2018-07-13T09:28:01Z'
+        allowEmptyValue: true
+    title: InitiateInstanceRequest
+  InitiateInstanceResponse:
+    type: object
+    properties:
+      instanceInfo:
+        type: string
+        example:
+          instanceId: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+          state: INITIATED
+          instanceName: Swagger instance test name
+        allowEmptyValue: false
+    title: InitiateInstanceResponse
+  InitiateTransactionRequest:
+    type: object
+    required:
+      - methodType
+    properties:
+      methodType:
+        type: string
+        example: PASSWORD
+        allowEmptyValue: false
+        enum:
+          - PASSWORD
+          - SMS
+          - CM
+      muid:
+        type: string
+        example: cg2t1
+        description: the anonymous transaction is established if MUID is missing
+        allowEmptyValue: true
+      notificationDestination:
+        type: string
+        example: test destination
+        allowEmptyValue: true
+      operationType:
+        type: string
+        example: AUTHENTICATION
+        allowEmptyValue: true
+        enum:
+          - AUTHENTICATION
+          - AUTHORIZATION
+      processingOptions:
+        $ref: '#/definitions/ProcessingOptions'
+      tenant:
+        type: string
+        example: Monet+
+        allowEmptyValue: true
+      transactionData:
+        $ref: '#/definitions/TransactionData'
+      type:
+        type: string
+        example: PIN
+        description: for CM only
+        allowEmptyValue: true
+        enum:
+          - PIN
+          - NO_PIN
+          - ALT_SECRET
+      validity:
+        type: string
+        format: date-time
+        example: '2020-10-10T05:05:05.235Z'
+        description: use the appropriate timestamp
+        allowEmptyValue: true
+    title: InitiateTransactionRequest
+  InitiateTransactionResponse:
+    type: object
+    properties:
+      caseId:
+        type: string
+        format: byte
+        example: >-
+          41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+        allowEmptyValue: false
+      methodSpecific:
+        type: object
+        example:
+          salt: 5dpn/LfE8uoVqoTc+v5ujE1ftnVxhtJ0GkCPZQr37pY=
+          cipherPublicKey: >-
+            MIHfMA0GCSqGSIb3DQEBAQUAA4HNADCByQKBwQCbA+nA4Oyfe4OiFeYGRK8O02+q3ObJ3IZPhYw7SJ5ULhygpZNhIcL5X0c1c2/yHuVoD7PKmoguQUu5Jj5uRC2ovvC8+X+xPRfohrhw8IXQ/DJC8AqRifCCUWshL8qzA4NNzIDIcMG+gLstSHdcMt6+opQb7AemGPfKiWVYw8wsTI9omkfT5QeMWTGJjBD38DFTLzEua/E56lm4MKDM4rk2PxD0Va0h2aZG7T0F6RwqhM7YYLhbc9LVwr840U9/EfUCAwEAAQ==
+          algType: 2
+          nonce: l9ned9tLn4hpytmcXjLS2hiYcs85iPDwM6Kx5QRxiPoNilzlAi8BoDxt7YJ/nQ1o
+        allowEmptyValue: false
+    title: InitiateTransactionResponse
+  JSendActivateInstanceResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/ActivateInstanceResponse'
+    title: JSendActivateInstanceResponse
+  JSendActivateMethodResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/ActivateMethodResponse'
+    title: JSendActivateMethodResponse
+  JSendBlockInstanceResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/BlockInstanceResponse'
+    title: JSendBlockInstanceResponse
+  JSendBlockMethodResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/BlockMethodResponse'
+    title: JSendBlockMethodResponse
+  JSendCancelTransactionResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/CancelTransactionResponse'
+    title: JSendCancelTransactionResponse
+  JSendDeactivateInstanceResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/DeactivateInstanceResponse'
+    title: JSendDeactivateInstanceResponse
+  JSendDeactivateMethodResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/DeactivateMethodResponse'
+    title: JSendDeactivateMethodResponse
+  JSendGetActivationCodeResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/GetActivationCodeResponse'
+    title: JSendGetActivationCodeResponse
+  JSendGetMethodInfoResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/GetMethodInfoResponse'
+    title: JSendGetMethodInfoResponse
+  JSendGetMethodParamsResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/GetMethodParamsResponse'
+    title: JSendGetMethodParamsResponse
+  JSendGetTransactionStateResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/GetTransactionStateResponse'
+    title: JSendGetTransactionStateResponse
+  JSendInitiateInstanceResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/InitiateInstanceResponse'
+    title: JSendInitiateInstanceResponse
+  JSendInitiateTransactionResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/InitiateTransactionResponse'
+    title: JSendInitiateTransactionResponse
+  JSendSetInstancePropertyResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/SetInstancePropertyResponse'
+    title: JSendSetInstancePropertyResponse
+  JSendUnblockInstanceResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/UnblockInstanceResponse'
+    title: JSendUnblockInstanceResponse
+  JSendUnblockMethodResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/UnblockMethodResponse'
+    title: JSendUnblockMethodResponse
+  JSendVerifyTransactionResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: success
+        allowEmptyValue: false
+      data:
+        allowEmptyValue: false
+        $ref: '#/definitions/VerifyTransactionResponse'
+    title: JSendVerifyTransactionResponse
+  MethodInfo:
+    type: object
+    properties:
+      activeInstances:
+        type: integer
+        format: int32
+      blockedUntil:
+        type: string
+        format: date-time
+      failedAttempts:
+        type: integer
+        format: int32
+      instances:
+        type: array
+        items:
+          type: object
+      methodType:
+        type: string
+        enum:
+          - PASSWORD
+          - ACTIVATION_CODE
+          - SMS
+          - CM
+      remainingAttempts:
+        type: integer
+        format: int32
+      state:
+        type: string
+        enum:
+          - ACTIVE
+          - BLOCKED_MAN
+          - BLOCKED_USAGE_TEMP
+          - BLOCKED_USAGE_PERM
+          - DEACTIVATED
+    title: MethodInfo
+  ProcessingOptions:
+    type: object
+    properties:
+      authorizationFlow:
+        type: string
+        example: ONLINE_OFFLINE
+        allowEmptyValue: true
+        enum:
+          - ONLINE
+          - OFFLINE
+          - ONLINE_OFFLINE
+      offlineChallenge:
+        type: string
+        example: QR
+        allowEmptyValue: true
+        enum:
+          - QR
+          - NONE
+          - QR_NONE
+    title: ProcessingOptions
+  Result:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      errorSpecificData:
+        $ref: '#/definitions/ErrorData'
+      message:
+        type: string
+    title: Result
+  SetInstancePropertyRequest:
+    type: object
+    required:
+      - instanceId
+      - methodType
+      - muid
+      - name
+    properties:
+      instanceId:
+        type: string
+        example: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+        allowEmptyValue: false
+      methodType:
+        type: string
+        example: PASSWORD
+        allowEmptyValue: false
+        enum:
+          - PASSWORD
+          - ACTIVATION_CODE
+          - SMS
+          - CM
+      muid:
+        type: string
+        example: cg2t1
+        allowEmptyValue: false
+      name:
+        type: string
+        example: Swagger instance test name
+        allowEmptyValue: true
+      tenant:
+        type: string
+        example: Monet+
+        allowEmptyValue: true
+      validTo:
+        type: string
+        format: date-time
+        example: '2018-07-13T09:28:01Z'
+        allowEmptyValue: true
+    title: SetInstancePropertyRequest
+  SetInstancePropertyResponse:
+    type: object
+    title: SetInstancePropertyResponse
+  TransactionData:
+    type: object
+    required:
+      - data
+      - locale
+      - template
+    properties:
+      data:
+        type: string
+        format: byte
+        example: >-
+          PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+        allowEmptyValue: false
+      locale:
+        type: string
+        example: cs
+        description: ISO 639-1
+        allowEmptyValue: false
+      template:
+        type: string
+        example: AUTHENTICATION
+        allowEmptyValue: false
+    title: TransactionData
+    description: 'it depends on methodType (for SMS and CM is required, for PWD isn''t'
+  UnblockInstanceRequest:
+    type: object
+    required:
+      - instanceId
+      - methodType
+      - muid
+    properties:
+      instanceId:
+        type: string
+        example: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+        allowEmptyValue: false
+      methodType:
+        type: string
+        example: PASSWORD
+        allowEmptyValue: false
+        enum:
+          - PASSWORD
+          - ACTIVATION_CODE
+          - SMS
+          - CM
+      muid:
+        type: string
+        example: cg2t1
+        allowEmptyValue: false
+      tenant:
+        type: string
+        example: Monet+
+        allowEmptyValue: true
+    title: UnblockInstanceRequest
+  UnblockInstanceResponse:
+    type: object
+    title: UnblockInstanceResponse
+  UnblockMethodRequest:
+    type: object
+    required:
+      - methodType
+      - muid
+    properties:
+      methodType:
+        type: string
+        example: PASSWORD
+        allowEmptyValue: false
+        enum:
+          - PASSWORD
+          - ACTIVATION_CODE
+          - SMS
+          - CM
+      muid:
+        type: string
+        example: cg2t1
+        allowEmptyValue: false
+      tenant:
+        type: string
+        example: Monet+
+        allowEmptyValue: true
+    title: UnblockMethodRequest
+  UnblockMethodResponse:
+    type: object
+    title: UnblockMethodResponse
+  VerifyTransactionRequest:
+    type: object
+    required:
+      - caseId
+      - methodType
+      - muid
+    properties:
+      caseId:
+        type: string
+        format: byte
+        example: >-
+          41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+        description: it is get from /initiateTransaction response
+        allowEmptyValue: false
+      chap:
+        $ref: '#/definitions/Chap'
+      code:
+        type: string
+        example: >-
+          kuxejDzuNbSh1z6VGzYqo7Bv90IpfRavzGfxBYN9yl6D549zaSawq6+Cb0RDQLUz+vpFCgPBMHs73AQO1TpkVCACO/XiDfAf6P2ad61pPlXN02+L6fARtxXcOqowuM5AdPQioV4Byo1/guSjsT/BGNL0MpIjw5NgMtpB5NNw24+2PYx+8lzZM25NPTNaylTJNXBiCL3kBV/p68hc2p4EDzSSRjgA0uTH1oNMIqyNXXPOFGCKU9RSylrBnwLpCUkq
+        description: it is computed from /initiateTransaction response
+        allowEmptyValue: false
+      methodType:
+        type: string
+        example: PASSWORD
+        allowEmptyValue: false
+        enum:
+          - PASSWORD
+          - ACTIVATION_CODE
+          - SMS
+          - CM
+      muid:
+        type: string
+        example: cg2t1
+        allowEmptyValue: false
+      tenant:
+        type: string
+        example: Monet+
+        allowEmptyValue: true
+    title: VerifyTransactionRequest
+  VerifyTransactionResponse:
+    type: object
+    properties:
+      instanceInfo:
+        type: string
+        example:
+          instanceId: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+          state: ACTIVE
+          instanceName: Swagger instance test name
+          lastAccess: '2018-07-13T09:28:01Z'
+        allowEmptyValue: false
+    title: VerifyTransactionResponse
+
