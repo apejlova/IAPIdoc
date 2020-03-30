@@ -1,0 +1,345 @@
+openapi: 3.0.2
+info:
+  title: IAPI (OpenAPI spec)
+  version: '1.0'
+  description: |-
+    IDport integration API specification.
+    It allows several types of basic scenarios, see [Use cases](../docs/Use-case.md).
+  contact:
+    name: 'Monet+, a.s.'
+    url: 'https://idport.cz'
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /initiateTransaction:
+    post:
+      summary: Initiate Transaction
+      operationId: post-initiateTransaction
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: 'JSend format (https://github.com/omniti-labs/jsend)'
+                properties:
+                  status:
+                    type: string
+                    default: success
+                    example: success
+                  data:
+                    type: object
+                    required:
+                      - caseId
+                    properties:
+                      caseId:
+                        type: string
+                        pattern: '^[A-Za-z0-9+/]{128}$'
+                        description: Unique identifier of transaction
+                      methodSpecific:
+                        oneOf:
+                          - type: object
+                            properties:
+                              salt:
+                                type: string
+                              cipherPublicKey:
+                                type: string
+                              algType:
+                                type: integer
+                                example: 2
+                              nonce:
+                                type: string
+                            required:
+                              - salt
+                          - type: object
+                            properties:
+                              cipherPublicKey:
+                                type: string
+                          - type: 'null'
+                          - type: object
+                            properties:
+                              cipherPublicKey:
+                                type: string
+                              qrData:
+                                type: string
+                          - type: object
+                            properties:
+                              qrData:
+                                type: string
+                required:
+                  - status
+                  - data
+              examples:
+                PWD login:
+                  value:
+                    status: success
+                    data:
+                      caseId: sjRdmLgNxRjHSyWERj6GBKTtHJ4926TjIGQoCc81ntjz0/eghq5KjPyszTFaAXgACY/C3+s/l8caVPHyZocXoHVBBw1NGDrb/Ful7TS6A2h4ichZ7SCKEjqMkC6ubmoD
+                      methodSpecific:
+                        salt: +v88KHs1CoLQkV02flyOYuyDBx59HXCRXMMWIgJwASk=
+                        cipherPublicKey: MIHfMA0GCSqGSIb3DQEBAQUAA4HNADCByQKBwQCbA+nA4Oyfe4OiFeYGRK8O02+q3ObJ3IZPhYw7SJ5ULhygpZNhIcL5X0c1c2/yHuVoD7PKmoguQUu5Jj5uRC2ovvC8+X+xPRfohrhw8IXQ/DJC8AqRifCCUWshL8qzA4NNzIDIcMG+gLstSHdcMt6+opQb7AemGPfKiWVYw8wsTI9omkfT5QeMWTGJjBD38DFTLzEua/E56lm4MKDM4rk2PxD0Va0h2aZG7T0F6RwqhM7YYLhbc9LVwr840U9/EfUCAwEAAQ==
+                        algType: 2
+                        nonce: iLqgk7UzUe1Y5fvsWn8Vyn0N4JZI/CnbcO3xnKfiSqf66CSeLCGfVmk8ceu8+2JF
+                SMS login:
+                  value:
+                    status: success
+                    data:
+                      caseId: x67jDmw/9reeXXajpH9Bv3TLlYI7/rMqxGqL/V7xgLDmfDZUrgzChmrfkw9fvRMmIPViRXZFjRrL6i83hkzj5V6uxrs6hgfUdDnnpQR1vc7zIu3GCf4Mfi06yEqfrerY
+                      methodSpecific:
+                        cipherPublicKey: MIHfMA0GCSqGSIb3DQEBAQUAA4HNADCByQKBwQCbA+nA4Oyfe4OiFeYGRK8O02+q3ObJ3IZPhYw7SJ5ULhygpZNhIcL5X0c1c2/yHuVoD7PKmoguQUu5Jj5uRC2ovvC8+X+xPRfohrhw8IXQ/DJC8AqRifCCUWshL8qzA4NNzIDIcMG+gLstSHdcMt6+opQb7AemGPfKiWVYw8wsTI9omkfT5QeMWTGJjBD38DFTLzEua/E56lm4MKDM4rk2PxD0Va0h2aZG7T0F6RwqhM7YYLhbc9LVwr840U9/EfUCAwEAAQ==
+                CM online login (PIN):
+                  value:
+                    status: success
+                    data:
+                      caseId: ob6wOFCmVhmn2/BJybgPkHieTWa/twxuU93izOjpwl9riV+Wn1C88iL3Pd1WO99CBuacheJcFdN591v7EjF/TSajxQ0XBoK3bioIdrbB0gQBHM3snIzTm5sWIT2rzPsR
+                CM login with OTP (BIO):
+                  value:
+                    status: success
+                    data:
+                      caseId: 51PTQiysSVf9uJpPod568IRwkj0UhqMWHsLd4CzRzoFJMEXaa4k9uFl2wJPqI8Obch8J+VeTA+Kr/tml9C6SG8lgQ9y+4hyqvFSZGJyG1X8J8hAI2FqZ1UevGzSSkoJW
+                      methodSpecific:
+                        qrData: UVIyfDJ8NkM2QjZFQTJ8UElOfDB8MOKUjEJMVUXilIzilIx8MHw4UDEqNVc8UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8PEJMVUU8PDF8RGF0dW0gYSDEjWFzIHRyYW5zYWtjZXwyNi4wNy4yMDE2IDE1OjI0OjIwPjF8SUQgdHJhbnNha2NlfDE2MDcyNjAwMDAwMDA1Nw==
+                        cipherPublicKey: MIHfMA0GCSqGSIb3DQEBAQUAA4HNADCByQKBwQCbA+nA4Oyfe4OiFeYGRK8O02+q3ObJ3IZPhYw7SJ5ULhygpZNhIcL5X0c1c2/yHuVoD7PKmoguQUu5Jj5uRC2ovvC8+X+xPRfohrhw8IXQ/DJC8AqRifCCUWshL8qzA4NNzIDIcMG+gLstSHdcMt6+opQb7AemGPfKiWVYw8wsTI9omkfT5QeMWTGJjBD38DFTLzEua/E56lm4MKDM4rk2PxD0Va0h2aZG7T0F6RwqhM7YYLhbc9LVwr840U9/EfUCAwEAAQ==
+                CM online transation (NO_PIN):
+                  value:
+                    status: success
+                    data:
+                      caseId: EpKQG2fqdJ5hKQ/tJ8X6tAZFPYReDyRUA2rtSpPNQNx06gDOE3ODvw6YPXb+aeJOo3dq7nzxlsAMAL7l1er9SGs64bPOjIGBkAGse+gtKZb3TQtsyG5T0lFugr60+lVf
+                CM offline transaction with QR (PIN):
+                  value:
+                    status: success
+                    data:
+                      caseId: 4by4ambkS5WSXh4sc6E+E6yMeO2eXWDBpiYPc2CXWRPkYUgZpSLGtjdO7I43n+uuxTd0v2LrSk4wJM86NrKIoBBXD577Npr1DYzFSE0K6zG/GFcSU0Mbxz3GhLHNednw
+                      methodSpecific:
+                        qrData: UVIyfDJ8RkFBOEE1QjN8UElOfDB8MOKUjEJMVUXilIzilIx8MHw4UDEqNVQ8UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8PEJMVUU8PDF8RGF0dW0gYSDEjWFzIHRyYW5zYWtjZXwyNi4wNy4yMDE2IDE1OjI0OjIwPjF8SUQgdHJhbnNha2NlfDE2MDcyNjAwMDAwMDA1Nw==
+                        cipherPublicKey: MIHfMA0GCSqGSIb3DQEBAQUAA4HNADCByQKBwQCbA+nA4Oyfe4OiFeYGRK8O02+q3ObJ3IZPhYw7SJ5ULhygpZNhIcL5X0c1c2/yHuVoD7PKmoguQUu5Jj5uRC2ovvC8+X+xPRfohrhw8IXQ/DJC8AqRifCCUWshL8qzA4NNzIDIcMG+gLstSHdcMt6+opQb7AemGPfKiWVYw8wsTI9omkfT5QeMWTGJjBD38DFTLzEua/E56lm4MKDM4rk2PxD0Va0h2aZG7T0F6RwqhM7YYLhbc9LVwr840U9/EfUCAwEAAQ==
+                CM anonymous QR code (PIN):
+                  value:
+                    status: success
+                    data:
+                      caseId: oA3AqI5G8NyzU5zIrdSfTd96YOrTNhQRYnUF7If3tX21lYFnZVWKfjAJDrvA+LMZsofVTZAI7IoaJJg3J2w+Y+uO2vaBDlo5LMz4Z0Wx1Ry9FhKLHOsl5yCg2WasBbxL
+                      methodSpecific:
+                        qrData: UVIxfDJ8NTFCNzg3Q0N8MXxvQTNBcUk1RzhOeXpVNXpJcmRTZlRkOTZZT3JUTmhRUlluVUY3SWYzdFgyMWxZRm5aVldLZmpBSkRydkErTE1ac29mVlRaQUk3SW9hSkpnM0oydytZK3VPMnZhQkRsbzVMTXo0WjBXeDFSeTlGaEtMSE9zbDV5Q2cyV2FzQmJ4THw4UDEqNEI=
+        '400':
+          description: Bad Request
+      parameters:
+        - $ref: '#/components/parameters/XTrnHeader'
+        - $ref: '#/components/parameters/XChannelHeader'
+      description: |-
+        Allows to initiate a new transaction for any active method of specified identity.
+        It supports two operation types:
+         - AUTHENTICATION for login transactions
+         - AUTHORIZATION for any other payment or non-payment transactions
+        Transaction data WYSIWYS is held in `transactionData` object together with WYSIWYS transformation template.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                methodType:
+                  $ref: '#/components/schemas/MethodType'
+                muid:
+                  $ref: '#/components/schemas/Muid'
+                tenant:
+                  $ref: '#/components/schemas/Tenant'
+                operationType:
+                  type: string
+                  enum:
+                    - AUTHENTICATION
+                    - AUTHORIZATION
+                  description: Distinguishes between login and other transactio types.
+                  default: AUTHORIZATION
+                validity:
+                  type: string
+                  default: XXX can be specified in config.param
+                  description: use the appropriate timestamp
+                  format: date-time
+                  example: '2020-10-10T05:05:05.235Z'
+                type:
+                  type: string
+                  default: PIN
+                  description: |-
+                    for CM method only applicable
+                    Specification of secret modality, that can be used for transaction authorization, modality hierarchy: PIN > ALT_SECRET > NO_PIN; stronger secret can be used always
+                  enum:
+                    - PIN
+                    - NO_PIN
+                    - ALT_SECRET
+                transactionData:
+                  type: object
+                  description: "XXX (why?) it depends on methodType (for SMS and CM is required, for PWD isn't)"
+                  properties:
+                    data:
+                      type: string
+                      pattern: '^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$'
+                      description: WYSIWYS transaction data (base64-encoded)
+                    locale:
+                      type: string
+                      example: cs
+                      description: language code according to ISO 639-1
+                      allowEmptyValue: false
+                    template:
+                      type: string
+                      example: AUTHENTICATION
+                      description: transformation template
+                  required:
+                    - data
+                    - locale
+                    - template
+                processingOptions:
+                  type: object
+                  description: used only for CM method
+                  properties:
+                    authorizationFlow:
+                      type: string
+                      default: ONLINE_OFFLINE
+                      description: distinguishes how the transaction can be verified
+                      enum:
+                        - ONLINE
+                        - OFFLINE
+                        - ONLINE_OFFLINE
+                    offlineChallenge:
+                      type: string
+                      default: QR
+                      description: type of challenge for offline authorization flow
+                      enum:
+                        - QR
+                        - NONE
+                        - QR_NONE
+                notificationDestination:
+                  type: string
+                  example: test destination
+                  description: |-
+                    destination where the notification of transaction state change is sent;
+                    if there is specified property `idport.transaction.${dest_key}.destination: ${notification-URL}` in IDport Config, it is possible to use `${dest_key}` as `notificationDestination` parameter during transaction initiation
+              required:
+                - methodType
+            examples:
+              PWD login:
+                value:
+                  tenant: Monet+
+                  muid: demo01
+                  methodType: PASSWORD
+                  operationType: AUTHENTICATION
+                  transactionData:
+                    data: PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+                    locale: cs
+                    template: AUTHENTICATION
+              SMS login:
+                value:
+                  tenant: Monet+
+                  muid: demo01
+                  methodType: SMS
+                  operationType: AUTHENTICATION
+                  transactionData:
+                    data: PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+                    locale: cs
+                    template: AUTHENTICATION
+              CM online login (PIN):
+                value:
+                  tenant: Monet+
+                  muid: demo01
+                  methodType: CM
+                  operationType: AUTHENTICATION
+                  type: PIN
+                  transactionData:
+                    data: PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+                    locale: cs
+                    template: AUTHENTICATION
+                  processingOptions:
+                    authorizationFlow: ONLINE
+              CM login with OTP (BIO):
+                value:
+                  tenant: Monet+
+                  muid: demo01
+                  methodType: CM
+                  operationType: AUTHENTICATION
+                  type: ALT_SECRET
+                  transactionData:
+                    data: PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+                    locale: cs
+                    template: AUTHENTICATION
+                  processingOptions:
+                    authorizationFlow: OFFLINE
+                    offlineChallenge: NONE
+              CM online transation (NO_PIN):
+                value:
+                  tenant: Monet+
+                  muid: demo01
+                  methodType: CM
+                  operationType: AUTHORIZATION
+                  type: NO_PIN
+                  transactionData:
+                    data: PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+                    locale: cs
+                    template: AUTHENTICATION
+                  processingOptions:
+                    authorizationFlow: ONLINE
+              CM offline transaction with QR (PIN):
+                value:
+                  tenant: Monet+
+                  muid: demo01
+                  methodType: CM
+                  operationType: AUTHORIZATION
+                  type: PIN
+                  transactionData:
+                    data: PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+                    locale: cs
+                    template: AUTHENTICATION
+                  processingOptions:
+                    authorizationFlow: OFFLINE
+                    offlineChallange: QR
+              CM anonymous QR code (PIN):
+                value:
+                  tenant: Monet+
+                  methodType: CM
+                  operationType: AUTHENTICATION
+                  type: PIN
+                  transactionData:
+                    data: PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+                    locale: cs
+                    template: AUTHENTICATION
+                  processingOptions:
+                    authorizationFlow: ONLINE
+        description: 'Not all parameters are necessary for all use cases, it depends mainly on methodType. See examples for more detail.'
+components:
+  schemas:
+    MethodType:
+      type: string
+      description: Distinguishes the context of operation for specified security method.
+      enum:
+        - PASSWORD
+        - SMS
+        - CM
+    Muid:
+      type: string
+      example: demo01
+      description: unique identity identifier; only anonymous transactions for CM can have `muid` missing
+    Tenant:
+      description: 'Name of tenant (organisation) holding the identity. If not specified, default value from configuration is taken.'
+      type: string
+      example: Monet+
+  parameters:
+    XChannelHeader:
+      name: X-CHANNEL-ID
+      in: header
+      description: XXX channel spec
+      required: false
+      schema:
+        type: string
+        default: 1
+    XTrnHeader:
+      name: X-TRN-ID
+      in: header
+      description: XXX trn id spec
+      required: false
+      schema:
+        type: string
+        default: 2
+tags:
+  - name: Method/instance management
+    description: 'REST APIs for method and instance management (de/activation, un/blocking, ...)'
+  - name: Transaction processing
+    description: 'REST APIs for transaction processing (initiate, verify, cancel, ...)'

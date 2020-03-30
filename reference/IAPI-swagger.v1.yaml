@@ -4,7 +4,7 @@ info:
   version: '1.0'
   description: This is a specification of APIs of IDPort version IAPI.
   contact: {}
-host: 'localhost'
+host: localhost
 basePath: /case-iapi/v1
 schemes:
   - http
@@ -758,8 +758,7 @@ definitions:
       caseId:
         type: string
         format: byte
-        example: >-
-          41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+        example: 41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
         allowEmptyValue: false
       muid:
         type: string
@@ -998,8 +997,7 @@ definitions:
       caseId:
         type: string
         format: byte
-        example: >-
-          41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+        example: 41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
         allowEmptyValue: false
       muid:
         type: string
@@ -1082,8 +1080,7 @@ definitions:
     title: InitiateInstanceResponse
   InitiateTransactionRequest:
     type: object
-    required:
-      - methodType
+    title: InitiateTransactionRequest
     properties:
       methodType:
         type: string
@@ -1132,22 +1129,21 @@ definitions:
         example: '2020-10-10T05:05:05.235Z'
         description: use the appropriate timestamp
         allowEmptyValue: true
-    title: InitiateTransactionRequest
+    required:
+      - methodType
   InitiateTransactionResponse:
     type: object
     properties:
       caseId:
         type: string
         format: byte
-        example: >-
-          41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+        example: 41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
         allowEmptyValue: false
       methodSpecific:
         type: object
         example:
           salt: 5dpn/LfE8uoVqoTc+v5ujE1ftnVxhtJ0GkCPZQr37pY=
-          cipherPublicKey: >-
-            MIHfMA0GCSqGSIb3DQEBAQUAA4HNADCByQKBwQCbA+nA4Oyfe4OiFeYGRK8O02+q3ObJ3IZPhYw7SJ5ULhygpZNhIcL5X0c1c2/yHuVoD7PKmoguQUu5Jj5uRC2ovvC8+X+xPRfohrhw8IXQ/DJC8AqRifCCUWshL8qzA4NNzIDIcMG+gLstSHdcMt6+opQb7AemGPfKiWVYw8wsTI9omkfT5QeMWTGJjBD38DFTLzEua/E56lm4MKDM4rk2PxD0Va0h2aZG7T0F6RwqhM7YYLhbc9LVwr840U9/EfUCAwEAAQ==
+          cipherPublicKey: MIHfMA0GCSqGSIb3DQEBAQUAA4HNADCByQKBwQCbA+nA4Oyfe4OiFeYGRK8O02+q3ObJ3IZPhYw7SJ5ULhygpZNhIcL5X0c1c2/yHuVoD7PKmoguQUu5Jj5uRC2ovvC8+X+xPRfohrhw8IXQ/DJC8AqRifCCUWshL8qzA4NNzIDIcMG+gLstSHdcMt6+opQb7AemGPfKiWVYw8wsTI9omkfT5QeMWTGJjBD38DFTLzEua/E56lm4MKDM4rk2PxD0Va0h2aZG7T0F6RwqhM7YYLhbc9LVwr840U9/EfUCAwEAAQ==
           algType: 2
           nonce: l9ned9tLn4hpytmcXjLS2hiYcs85iPDwM6Kx5QRxiPoNilzlAi8BoDxt7YJ/nQ1o
         allowEmptyValue: false
@@ -1457,8 +1453,7 @@ definitions:
       data:
         type: string
         format: byte
-        example: >-
-          PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+        example: PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
         allowEmptyValue: false
       locale:
         type: string
@@ -1470,7 +1465,7 @@ definitions:
         example: AUTHENTICATION
         allowEmptyValue: false
     title: TransactionData
-    description: 'it depends on methodType (for SMS and CM is required, for PWD isn''t'
+    description: "it depends on methodType (for SMS and CM is required, for PWD isn't"
   UnblockInstanceRequest:
     type: object
     required:
@@ -1540,16 +1535,14 @@ definitions:
       caseId:
         type: string
         format: byte
-        example: >-
-          41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+        example: 41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
         description: it is get from /initiateTransaction response
         allowEmptyValue: false
       chap:
         $ref: '#/definitions/Chap'
       code:
         type: string
-        example: >-
-          kuxejDzuNbSh1z6VGzYqo7Bv90IpfRavzGfxBYN9yl6D549zaSawq6+Cb0RDQLUz+vpFCgPBMHs73AQO1TpkVCACO/XiDfAf6P2ad61pPlXN02+L6fARtxXcOqowuM5AdPQioV4Byo1/guSjsT/BGNL0MpIjw5NgMtpB5NNw24+2PYx+8lzZM25NPTNaylTJNXBiCL3kBV/p68hc2p4EDzSSRjgA0uTH1oNMIqyNXXPOFGCKU9RSylrBnwLpCUkq
+        example: kuxejDzuNbSh1z6VGzYqo7Bv90IpfRavzGfxBYN9yl6D549zaSawq6+Cb0RDQLUz+vpFCgPBMHs73AQO1TpkVCACO/XiDfAf6P2ad61pPlXN02+L6fARtxXcOqowuM5AdPQioV4Byo1/guSjsT/BGNL0MpIjw5NgMtpB5NNw24+2PYx+8lzZM25NPTNaylTJNXBiCL3kBV/p68hc2p4EDzSSRjgA0uTH1oNMIqyNXXPOFGCKU9RSylrBnwLpCUkq
         description: it is computed from /initiateTransaction response
         allowEmptyValue: false
       methodType:
@@ -1582,4 +1575,3 @@ definitions:
           lastAccess: '2018-07-13T09:28:01Z'
         allowEmptyValue: false
     title: VerifyTransactionResponse
-
