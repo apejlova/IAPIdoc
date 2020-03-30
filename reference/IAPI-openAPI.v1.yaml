@@ -11,10 +11,18 @@ info:
 servers:
   - url: 'http://localhost:8080'
 paths:
+  /activateMethod:
+    post:
+      summary: Activate method
+      operationId: post-activateMethod
+      tags:
+        - Method/instance management
   /initiateTransaction:
     post:
       summary: Initiate Transaction
       operationId: post-initiateTransaction
+      tags:
+        - Transaction processing
       responses:
         '200':
           description: OK
