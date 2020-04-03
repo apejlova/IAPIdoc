@@ -1,0 +1,1516 @@
+openapi: 3.0.0
+info:
+  title: Api Documentation
+  version: '1.0'
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0'
+  contact: {}
+  termsOfService: 'urn:tos'
+  description: Api Documentation
+servers:
+  - url: '//172.27.185.100:8084/case-iapi'
+paths:
+  /v1/ping:
+    get:
+      summary: ping
+      operationId: pingUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/IdPortCaseResponse'
+  /v1/verifyTransaction:
+    post:
+      summary: verifyTransaction
+      operationId: verifyTransactionUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyTransactionRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSendVerifyTransactionResponse'
+      tags:
+        - Transaction processing
+      description: Allows to send authorization signature to verify previous intiated transaction.
+  /v1/unblockInstance:
+    post:
+      summary: unblockInstance
+      operationId: unblockInstanceUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/UnblockInstanceRequest'
+        description: req
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendUnblockInstanceResponse'
+      tags:
+        - Method/instance management
+  /v1/unblockMethod:
+    post:
+      summary: unblockMethod
+      operationId: unblockMethodUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/UnblockMethodRequest'
+        description: req
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendUnblockMethodResponse'
+      tags:
+        - Method/instance management
+  /v1/transactionState:
+    post:
+      summary: getTransactionState
+      operationId: getTransactionStateUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/GetTransactionStateRequest'
+        description: req
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendGetTransactionStateResponse'
+      tags:
+        - Transaction processing
+  /v1/setInstanceProperty:
+    post:
+      summary: setInstanceProperty
+      operationId: setInstancePropertyUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/SetInstancePropertyRequest'
+        description: req
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendSetInstancePropertyResponse'
+      tags:
+        - Method/instance management
+  /v1/methodParams:
+    post:
+      summary: getMethodParams
+      operationId: getMethodParamsUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/GetMethodParamsRequest'
+        description: req
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendGetMethodParamsResponse'
+      tags:
+        - Method/instance management
+  /v1/methodInfo:
+    post:
+      summary: getMethodInfo
+      operationId: getMethodInfoUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/GetMethodInfoRequest'
+        description: req
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendGetMethodInfoResponse'
+      tags:
+        - Method/instance management
+  /v1/initiateTransaction:
+    post:
+      summary: initiateTransaction
+      operationId: initiateTransactionUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      description: |-
+        Allows to initiate a new transaction for any active method of specified identity.
+        It supports two operation types:
+         - AUTHENTICATION for login transactions
+         - AUTHORIZATION for any other payment or non-payment transactions
+        Transaction data WYSIWYS is held in `transactionData` object together with WYSIWYS transformation template.
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/InitiateTransactionRequest'
+        description: req
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendInitiateTransactionResponse'
+      tags:
+        - Transaction processing
+  /v1/initiateInstance:
+    post:
+      summary: initiateInstance
+      operationId: initiateInstanceUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InitiateInstanceRequest'
+        description: req
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSendInitiateInstanceResponse'
+      tags:
+        - Method/instance management
+  /v1/deactivateMethod:
+    post:
+      summary: deactivateMethod
+      operationId: deactivateMethodUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/DeactivateMethodRequest'
+        description: req
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendDeactivateMethodResponse'
+      tags:
+        - Method/instance management
+  /v1/deactivateInstance:
+    post:
+      summary: deactivateInstance
+      operationId: deactivateInstanceUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/DeactivateInstanceRequest'
+        description: req
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendDeactivateInstanceResponse'
+      tags:
+        - Method/instance management
+  /v1/cancelTransaction:
+    post:
+      summary: cancelTransaction
+      operationId: cancelTransactionUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/CancelTransactionRequest'
+        description: req
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendCancelTransactionResponse'
+      tags:
+        - Transaction processing
+  /v1/blockMethod:
+    post:
+      summary: blockMethod
+      operationId: blockMethodUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/BlockMethodRequest'
+        description: req
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendBlockMethodResponse'
+      tags:
+        - Method/instance management
+  /v1/blockInstance:
+    post:
+      summary: blockInstance
+      operationId: blockInstanceUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/BlockInstanceRequest'
+        description: req
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendBlockInstanceResponse'
+      tags:
+        - Method/instance management
+  /v1/activationCode:
+    post:
+      summary: getActivationCode
+      operationId: getActivationCodeUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetActivationCodeRequest'
+        description: req
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSendGetActivationCodeResponse'
+      tags:
+        - Method/instance management
+  /v1/activateMethod:
+    post:
+      summary: activateMethod
+      operationId: activateMethodUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivateMethodRequest'
+        description: req
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSendActivateMethodResponse'
+      tags:
+        - Method/instance management
+  /v1/activateInstance:
+    post:
+      summary: activateInstance
+      operationId: activateInstanceUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivateInstanceRequest'
+        description: req
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSendActivateInstanceResponse'
+      tags:
+        - Method/instance management
+components:
+  schemas:
+    VerifyTransactionResponse:
+      type: object
+      properties:
+        instanceInfo:
+          type: object
+          example:
+            value:
+              instanceId: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+              instanceName: Swagger instance test name
+              state: ACTIVE
+              lastAccess: '2018-07-13T09:28:01Z'
+          allowEmptyValue: false
+      title: VerifyTransactionResponse
+    VerifyTransactionRequest:
+      type: object
+      title: VerifyTransactionRequest
+      properties:
+        caseId:
+          type: string
+          description: it is get from /initiateTransaction response
+          example: 41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+        code:
+          type: string
+          example: kuxejDzuNbSh1z6VGzYqo7Bv90IpfRavzGfxBYN9yl6D549zaSawq6+Cb0RDQLUz+vpFCgPBMHs73AQO1TpkVCACO/XiDfAf6P2ad61pPlXN02+L6fARtxXcOqowuM5AdPQioV4Byo1/guSjsT/BGNL0MpIjw5NgMtpB5NNw24+2PYx+8lzZM25NPTNaylTJNXBiCL3kBV/p68hc2p4EDzSSRjgA0uTH1oNMIqyNXXPOFGCKU9RSylrBnwLpCUkq
+          description: it is computed from /initiateTransaction response
+          allowEmptyValue: false
+        methodType:
+          type: string
+          example: PASSWORD
+          allowEmptyValue: false
+          enum:
+            - PASSWORD
+            - ACTIVATION_CODE
+            - SMS
+            - CM
+            - SPNEGO
+            - TLS_CLIENT
+        muid:
+          type: string
+          example: cg2t1
+          allowEmptyValue: false
+        tenant:
+          type: string
+          example: Monet+
+          allowEmptyValue: true
+        chap:
+          $ref: '#/components/schemas/Chap'
+      required:
+        - caseId
+        - methodType
+        - muid
+    UnblockMethodResponse:
+      type: object
+      title: UnblockMethodResponse
+    UnblockMethodRequest:
+      type: object
+      required:
+        - methodType
+        - muid
+      properties:
+        methodType:
+          type: string
+          example: PASSWORD
+          allowEmptyValue: false
+          enum:
+            - PASSWORD
+            - ACTIVATION_CODE
+            - SMS
+            - CM
+            - SPNEGO
+            - TLS_CLIENT
+        muid:
+          type: string
+          example: cg2t1
+          allowEmptyValue: false
+        tenant:
+          type: string
+          example: Monet+
+          allowEmptyValue: true
+      title: UnblockMethodRequest
+    UnblockInstanceResponse:
+      type: object
+      title: UnblockInstanceResponse
+    UnblockInstanceRequest:
+      type: object
+      required:
+        - instanceId
+        - methodType
+        - muid
+      properties:
+        instanceId:
+          type: string
+          example: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+          allowEmptyValue: false
+        methodType:
+          type: string
+          example: PASSWORD
+          allowEmptyValue: false
+          enum:
+            - PASSWORD
+            - ACTIVATION_CODE
+            - SMS
+            - CM
+            - SPNEGO
+            - TLS_CLIENT
+        muid:
+          type: string
+          example: cg2t1
+          allowEmptyValue: false
+        tenant:
+          type: string
+          example: Monet+
+          allowEmptyValue: true
+      title: UnblockInstanceRequest
+    TransactionData:
+      type: object
+      description: |-
+                    for methods SMS and CM are transaction data visualized to user (SMS, mobile application) and they are part of the cryptography for transaction signature, so they are required
+                    for method PASSWORD the transaction data are optional just for record, cryptography signature is based on randnom nonce and password hash
+      required:
+        - data
+        - locale
+        - template
+      properties:
+        data:
+          type: string
+          pattern: '^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$'
+          allowEmptyValue: false
+          description: WYSIWYS transaction data (base64-encoded)
+        locale:
+          type: string
+          example: cs
+          allowEmptyValue: false
+          description: language code according to ISO 639-1
+        template:
+          type: string
+          example: AUTHENTICATION
+          allowEmptyValue: false
+          description: transformation template
+      title: TransactionData
+    SetInstancePropertyResponse:
+      type: object
+      title: SetInstancePropertyResponse
+    SetInstancePropertyRequest:
+      type: object
+      required:
+        - instanceId
+        - methodType
+        - muid
+      properties:
+        instanceId:
+          type: string
+          example: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+          allowEmptyValue: false
+        methodType:
+          type: string
+          example: PASSWORD
+          allowEmptyValue: false
+          enum:
+            - PASSWORD
+            - ACTIVATION_CODE
+            - SMS
+            - CM
+            - SPNEGO
+            - TLS_CLIENT
+        muid:
+          type: string
+          example: cg2t1
+          allowEmptyValue: false
+        name:
+          type: string
+          example: Swagger instance test name
+          allowEmptyValue: true
+        tenant:
+          type: string
+          example: Monet+
+          allowEmptyValue: true
+        validTo:
+          type: string
+          format: date-time
+          example: '2018-07-13T09:28:01Z'
+          allowEmptyValue: true
+      title: SetInstancePropertyRequest
+    Result:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        errorSpecificData:
+          $ref: '#/components/schemas/ErrorData'
+        message:
+          type: string
+      title: Result
+    ProcessingOptions:
+      type: object
+      description: used only for CM method
+      properties:
+        authorizationFlow:
+          type: string
+          default: ONLINE_OFFLINE
+          allowEmptyValue: true
+          description: distinguishes how the transaction can be verified
+          enum:
+            - ONLINE
+            - OFFLINE
+            - ONLINE_OFFLINE
+        offlineChallenge:
+          type: string
+          default: QR
+          allowEmptyValue: true
+          description: type of challenge for offline authorization flow
+          enum:
+            - QR
+            - NONE
+            - QR_NONE
+      title: ProcessingOptions
+    MethodInfo:
+      type: object
+      properties:
+        activeInstances:
+          type: integer
+          format: int32
+        blockedUntil:
+          type: string
+          format: date-time
+        failedAttempts:
+          type: integer
+          format: int32
+        instances:
+          type: array
+          items:
+            type: object
+        methodType:
+          type: string
+          enum:
+            - PASSWORD
+            - ACTIVATION_CODE
+            - SMS
+            - CM
+            - SPNEGO
+            - TLS_CLIENT
+        remainingAttempts:
+          type: integer
+          format: int32
+        state:
+          type: string
+          enum:
+            - ACTIVE
+            - BLOCKED_MAN
+            - BLOCKED_USAGE_TEMP
+            - BLOCKED_USAGE_PERM
+            - DEACTIVATED
+      title: MethodInfo
+    JSendVerifyTransactionResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/VerifyTransactionResponse'
+      title: JSendVerifyTransactionResponse
+    JSendUnblockMethodResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/UnblockMethodResponse'
+      title: JSendUnblockMethodResponse
+    JSendUnblockInstanceResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/UnblockInstanceResponse'
+      title: JSendUnblockInstanceResponse
+    JSendSetInstancePropertyResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/SetInstancePropertyResponse'
+      title: JSendSetInstancePropertyResponse
+    JSendInitiateTransactionResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/InitiateTransactionResponse'
+      title: JSendInitiateTransactionResponse
+    JSendInitiateInstanceResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/InitiateInstanceResponse'
+      title: JSendInitiateInstanceResponse
+    JSendGetTransactionStateResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/GetTransactionStateResponse'
+      title: JSendGetTransactionStateResponse
+    JSendGetMethodParamsResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/GetMethodParamsResponse'
+      title: JSendGetMethodParamsResponse
+    JSendGetMethodInfoResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/GetMethodInfoResponse'
+      title: JSendGetMethodInfoResponse
+    JSendGetActivationCodeResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/GetActivationCodeResponse'
+      title: JSendGetActivationCodeResponse
+    JSendDeactivateMethodResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/DeactivateMethodResponse'
+      title: JSendDeactivateMethodResponse
+    JSendDeactivateInstanceResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/DeactivateInstanceResponse'
+      title: JSendDeactivateInstanceResponse
+    JSendCancelTransactionResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/CancelTransactionResponse'
+      title: JSendCancelTransactionResponse
+    JSendBlockMethodResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/BlockMethodResponse'
+      title: JSendBlockMethodResponse
+    JSendBlockInstanceResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/BlockInstanceResponse'
+      title: JSendBlockInstanceResponse
+    JSendActivateMethodResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/ActivateMethodResponse'
+      title: JSendActivateMethodResponse
+    JSendActivateInstanceResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+          allowEmptyValue: false
+        data:
+          $ref: '#/components/schemas/ActivateInstanceResponse'
+      title: JSendActivateInstanceResponse
+    InitiateTransactionResponse:
+      type: object
+      properties:
+        caseId:
+          type: string
+          format: byte
+          example: 41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+          allowEmptyValue: false
+        methodSpecific:
+          type: object
+          example:
+            salt: 5dpn/LfE8uoVqoTc+v5ujE1ftnVxhtJ0GkCPZQr37pY=
+            cipherPublicKey: MIHfMA0GCSqGSIb3DQEBAQUAA4HNADCByQKBwQCbA+nA4Oyfe4OiFeYGRK8O02+q3ObJ3IZPhYw7SJ5ULhygpZNhIcL5X0c1c2/yHuVoD7PKmoguQUu5Jj5uRC2ovvC8+X+xPRfohrhw8IXQ/DJC8AqRifCCUWshL8qzA4NNzIDIcMG+gLstSHdcMt6+opQb7AemGPfKiWVYw8wsTI9omkfT5QeMWTGJjBD38DFTLzEua/E56lm4MKDM4rk2PxD0Va0h2aZG7T0F6RwqhM7YYLhbc9LVwr840U9/EfUCAwEAAQ==
+            algType: 2
+            nonce: l9ned9tLn4hpytmcXjLS2hiYcs85iPDwM6Kx5QRxiPoNilzlAi8BoDxt7YJ/nQ1o
+          allowEmptyValue: false
+      title: InitiateTransactionResponse
+    InitiateTransactionRequest:
+      type: object
+      title: InitiateTransactionRequest
+      properties:
+        methodType:
+          $ref: '#/components/schemas/MethodType'
+        muid:
+          $ref: '#/components/schemas/Muid'
+        notificationDestination:
+          type: string
+          example: test destination
+          allowEmptyValue: true
+          description:  |-
+            destination where the notification of transaction state change is sent;
+            if there is specified property `idport.transaction.${dest_key}.destination: ${notification-URL}` in IDport Config, it is possible to use `${dest_key}` as `notificationDestination` parameter during transaction initiation
+        operationType:
+          type: string
+          description: Distinguishes between login and other transactio types.
+          default: AUTHORIZATION
+          example: AUTHENTICATION
+          allowEmptyValue: true
+          enum:
+            - AUTHENTICATION
+            - AUTHORIZATION
+        processingOptions:
+          $ref: '#/components/schemas/ProcessingOptions'
+        tenant:
+          $ref: '#/components/schemas/Tenant'
+        transactionData:
+          $ref: '#/components/schemas/TransactionData'
+        type:
+          type: string
+          example: PIN
+          description: |-
+            for CM method only applicable
+            Specification of secret modality, that can be used for transaction authorization, modality hierarchy: PIN > ALT_SECRET > NO_PIN; stronger secret can be used always
+          allowEmptyValue: true
+          enum:
+            - PIN
+            - NO_PIN
+            - ALT_SECRET
+            - INFORMATION_MESSAGE
+        validity:
+          type: string
+          format: date-time
+          default: XXX can be specified in config.param
+          example: '2020-10-10T05:05:05.235Z'
+          description: use the appropriate timestamp
+          allowEmptyValue: true
+      required:
+        - methodType
+      examples:
+        PWD login:
+          value:
+                  tenant: Monet+
+                  muid: demo01
+                  methodType: PASSWORD
+                  operationType: AUTHENTICATION
+                  transactionData:
+                    data: PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+                    locale: cs
+                    template: AUTHENTICATION
+        SMS login:
+                value:
+                  tenant: Monet+
+                  muid: demo01
+                  methodType: SMS
+                  operationType: AUTHENTICATION
+                  transactionData:
+                    data: PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+                    locale: cs
+                    template: AUTHENTICATION
+              CM online login (PIN):
+                value:
+                  tenant: Monet+
+                  muid: demo01
+                  methodType: CM
+                  operationType: AUTHENTICATION
+                  type: PIN
+                  transactionData:
+                    data: PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+                    locale: cs
+                    template: AUTHENTICATION
+                  processingOptions:
+                    authorizationFlow: ONLINE
+              CM login with OTP (BIO):
+                value:
+                  tenant: Monet+
+                  muid: demo01
+                  methodType: CM
+                  operationType: AUTHENTICATION
+                  type: ALT_SECRET
+                  transactionData:
+                    data: PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+                    locale: cs
+                    template: AUTHENTICATION
+                  processingOptions:
+                    authorizationFlow: OFFLINE
+                    offlineChallenge: NONE
+              CM online transation (NO_PIN):
+                value:
+                  tenant: Monet+
+                  muid: demo01
+                  methodType: CM
+                  operationType: AUTHORIZATION
+                  type: NO_PIN
+                  transactionData:
+                    data: PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+                    locale: cs
+                    template: AUTHENTICATION
+                  processingOptions:
+                    authorizationFlow: ONLINE
+              CM offline transaction with QR (PIN):
+                value:
+                  tenant: Monet+
+                  muid: demo01
+                  methodType: CM
+                  operationType: AUTHORIZATION
+                  type: PIN
+                  transactionData:
+                    data: PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+                    locale: cs
+                    template: AUTHENTICATION
+                  processingOptions:
+                    authorizationFlow: OFFLINE
+                    offlineChallange: QR
+              CM anonymous QR code (PIN):
+                value:
+                  tenant: Monet+
+                  methodType: CM
+                  operationType: AUTHENTICATION
+                  type: PIN
+                  transactionData:
+                    data: PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+                    locale: cs
+                    template: AUTHENTICATION
+                  processingOptions:
+                    authorizationFlow: ONLINE
+    InitiateInstanceResponse:
+      type: object
+      properties:
+        instanceInfo:
+          type: object
+          example:
+            value:
+              instanceId: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+              state: INITIATED
+              instanceName: Swagger instance test name
+          allowEmptyValue: false
+      title: InitiateInstanceResponse
+    InitiateInstanceRequest:
+      type: object
+      required:
+        - methodType
+        - muid
+      properties:
+        methodSpecific:
+          type: object
+          example:
+            value: BRS2IIsHA/vX+burYewoRgi+DMXvOb+wabBiUMtNNPM=
+          description: depends on MethodType
+          allowEmptyValue: false
+        methodType:
+          type: string
+          example: PASSWORD
+          allowEmptyValue: false
+          enum:
+            - PASSWORD
+            - ACTIVATION_CODE
+            - SMS
+            - CM
+            - SPNEGO
+            - TLS_CLIENT
+        muid:
+          type: string
+          example: cg2t1
+          allowEmptyValue: false
+        name:
+          type: string
+          example: Swagger instance test name
+          allowEmptyValue: true
+        tenant:
+          type: string
+          example: Monet+
+          allowEmptyValue: true
+        validTo:
+          type: string
+          format: date-time
+          example: '2018-07-13T09:28:01Z'
+          allowEmptyValue: true
+      title: InitiateInstanceRequest
+    IdPortCaseResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+      title: IdPortCaseResponse
+    GetTransactionStateResponse:
+      type: object
+      properties:
+        muid:
+          type: string
+        state:
+          type: string
+          example: INITIATED
+          allowEmptyValue: false
+          enum:
+            - INITIATED
+            - LOADED
+            - EXPIRED
+            - AUTHORIZED
+            - FAILED
+            - CANCELED
+      title: GetTransactionStateResponse
+    GetTransactionStateRequest:
+      type: object
+      required:
+        - caseId
+      properties:
+        caseId:
+          type: string
+          format: byte
+          example: 41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+          allowEmptyValue: false
+        muid:
+          type: string
+          example: cg2t1
+          description: it is empty for the case of an anonymous transaction
+          allowEmptyValue: true
+      title: GetTransactionStateRequest
+    GetMethodParamsResponse:
+      type: object
+      properties:
+        methodSpecific:
+          type: object
+          example:
+            algType: 2
+            salt: 5dpn/LfE8uoVqoTc+v5ujE1ftnVxhtJ0GkCPZQr37pY=
+          allowEmptyValue: false
+      title: GetMethodParamsResponse
+    GetMethodParamsRequest:
+      type: object
+      required:
+        - methodType
+        - muid
+      properties:
+        methodType:
+          type: string
+          example: PASSWORD
+          allowEmptyValue: false
+          enum:
+            - PASSWORD
+            - ACTIVATION_CODE
+            - SMS
+            - CM
+            - SPNEGO
+            - TLS_CLIENT
+        muid:
+          type: string
+          example: cg2t1
+          allowEmptyValue: false
+        tenant:
+          type: string
+          example: Monet+
+          allowEmptyValue: true
+      title: GetMethodParamsRequest
+    GetMethodInfoResponse:
+      type: object
+      properties:
+        methodInfo:
+          type: array
+          example:
+            - methodType: PASSWORD
+              state: ACTIVE
+              activeInstances: 1
+              instances:
+                - instanceId: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+                  state: ACTIVE
+                  instanceName: Swagger instance test name
+                - instanceId: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwb'
+                  state: INITIATED
+                  instanceName: Swagger instance test name 2
+              failedAttempts: 0
+              remainingAttempts: 3
+          allowEmptyValue: false
+          items:
+            $ref: '#/components/schemas/MethodInfo'
+      title: GetMethodInfoResponse
+    GetMethodInfoRequest:
+      type: object
+      required:
+        - methodTypes
+        - muid
+      properties:
+        methodTypes:
+          type: array
+          example:
+            - PASSWORD
+          allowEmptyValue: false
+          items:
+            type: string
+            enum:
+              - PASSWORD
+              - ACTIVATION_CODE
+              - SMS
+              - CM
+              - SPNEGO
+              - TLS_CLIENT
+        muid:
+          type: string
+          example: cg2t1
+          allowEmptyValue: false
+        tenant:
+          type: string
+          example: Monet+
+          allowEmptyValue: true
+      title: GetMethodInfoRequest
+    GetActivationCodeResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          example: '240537'
+          allowEmptyValue: false
+        qrData:
+          type: string
+          format: byte
+          example: UVI1fDF8QTAzNDk0QkV8Y2cydDFAbW9uZXRwbHVzLmN6fDIzNzQyMQ==
+          allowEmptyValue: false
+        userId:
+          type: string
+          example: cg2t1@monetplus.cz
+          allowEmptyValue: false
+      title: GetActivationCodeResponse
+    GetActivationCodeRequest:
+      type: object
+      required:
+        - muid
+      properties:
+        muid:
+          type: string
+          example: cg2t1
+          allowEmptyValue: false
+        tenant:
+          type: string
+          example: Monet+
+          allowEmptyValue: true
+      title: GetActivationCodeRequest
+    ErrorData:
+      type: object
+      properties:
+        data:
+          type: object
+        wrapperName:
+          type: string
+      title: ErrorData
+    DeactivateMethodResponse:
+      type: object
+      title: DeactivateMethodResponse
+    DeactivateMethodRequest:
+      type: object
+      required:
+        - methodType
+        - muid
+      properties:
+        methodType:
+          type: string
+          example: PASSWORD
+          allowEmptyValue: false
+          enum:
+            - PASSWORD
+            - ACTIVATION_CODE
+            - SMS
+            - CM
+            - SPNEGO
+            - TLS_CLIENT
+        muid:
+          type: string
+          example: cg2t1
+          allowEmptyValue: false
+        tenant:
+          type: string
+          example: Monet+
+          allowEmptyValue: true
+      title: DeactivateMethodRequest
+    DeactivateInstanceResponse:
+      type: object
+      title: DeactivateInstanceResponse
+    DeactivateInstanceRequest:
+      type: object
+      required:
+        - instanceId
+        - methodType
+        - muid
+      properties:
+        instanceId:
+          type: string
+          example: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+          allowEmptyValue: false
+        methodType:
+          type: string
+          example: PASSWORD
+          allowEmptyValue: false
+          enum:
+            - PASSWORD
+            - ACTIVATION_CODE
+            - SMS
+            - CM
+            - SPNEGO
+            - TLS_CLIENT
+        muid:
+          type: string
+          example: cg2t1
+          allowEmptyValue: false
+        tenant:
+          type: string
+          example: Monet+
+          allowEmptyValue: true
+      title: DeactivateInstanceRequest
+    Chap:
+      type: object
+      title: Chap
+      properties:
+        authProtocol:
+          type: integer
+          format: int64
+          example: 1
+          allowEmptyValue: false
+        challenge:
+          type: string
+          example: MzM5MjA1
+        response:
+          type: string
+          example: MzM5MjA1
+        username:
+          type: string
+          example: cg2t1
+          allowEmptyValue: false
+      required:
+        - authProtocol
+        - challenge
+        - response
+        - username
+    CancelTransactionResponse:
+      type: object
+      title: CancelTransactionResponse
+    CancelTransactionRequest:
+      type: object
+      required:
+        - caseId
+      properties:
+        caseId:
+          type: string
+          format: byte
+          example: 41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+          allowEmptyValue: false
+        muid:
+          type: string
+          example: cg2t1
+          description: it is empty for the case of an anonymous transaction
+          allowEmptyValue: true
+        reason:
+          type: string
+          example: SWAGGER test
+          allowEmptyValue: true
+      title: CancelTransactionRequest
+    BlockMethodResponse:
+      type: object
+      title: BlockMethodResponse
+    BlockMethodRequest:
+      type: object
+      required:
+        - methodType
+        - muid
+      properties:
+        methodType:
+          type: string
+          example: PASSWORD
+          allowEmptyValue: false
+          enum:
+            - PASSWORD
+            - ACTIVATION_CODE
+            - SMS
+            - CM
+            - SPNEGO
+            - TLS_CLIENT
+        muid:
+          type: string
+          example: cg2t1
+          allowEmptyValue: false
+        tenant:
+          type: string
+          example: Monet+
+          allowEmptyValue: true
+      title: BlockMethodRequest
+    BlockInstanceResponse:
+      type: object
+      title: BlockInstanceResponse
+    BlockInstanceRequest:
+      type: object
+      required:
+        - instanceId
+        - methodType
+        - muid
+      properties:
+        instanceId:
+          type: string
+          example: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+          allowEmptyValue: false
+        methodType:
+          type: string
+          example: PASSWORD
+          allowEmptyValue: false
+          enum:
+            - PASSWORD
+            - ACTIVATION_CODE
+            - SMS
+            - CM
+            - SPNEGO
+            - TLS_CLIENT
+        muid:
+          type: string
+          example: cg2t1
+          allowEmptyValue: false
+        tenant:
+          type: string
+          example: Monet+
+          allowEmptyValue: true
+      title: BlockInstanceRequest
+    ActivateMethodResponse:
+      type: object
+      properties:
+        methodSpecific:
+          type: object
+          example:
+            value:
+              algType: 2
+              salt: 5dpn/LfE8uoVqoTc+v5ujE1ftnVxhtJ0GkCPZQr37pY=
+          allowEmptyValue: false
+      title: ActivateMethodResponse
+    ActivateMethodRequest:
+      type: object
+      required:
+        - methodType
+        - muid
+      properties:
+        methodSpecific:
+          type: object
+          example:
+            value:
+              algType: 2
+          allowEmptyValue: true
+        methodType:
+          type: string
+          example: PASSWORD
+          allowEmptyValue: false
+          enum:
+            - PASSWORD
+            - ACTIVATION_CODE
+            - SMS
+            - CM
+            - SPNEGO
+            - TLS_CLIENT
+        muid:
+          type: string
+          example: cg2t1
+          allowEmptyValue: false
+        tenant:
+          type: string
+          example: Monet+
+          allowEmptyValue: true
+      title: ActivateMethodRequest
+    ActivateInstanceResponse:
+      type: object
+      properties:
+        instanceInfo:
+          type: object
+          example:
+            value:
+              instanceId: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+              state: ACTIVE
+              instanceName: Swagger instance test name
+          allowEmptyValue: false
+      title: ActivateInstanceResponse
+    ActivateInstanceRequest:
+      type: object
+      required:
+        - instanceId
+        - methodType
+        - muid
+      properties:
+        instanceId:
+          type: string
+          example: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+          allowEmptyValue: false
+        methodType:
+          type: string
+          example: PASSWORD
+          allowEmptyValue: false
+          enum:
+            - PASSWORD
+            - ACTIVATION_CODE
+            - SMS
+            - CM
+            - SPNEGO
+            - TLS_CLIENT
+        muid:
+          type: string
+          example: cg2t1
+          allowEmptyValue: false
+        tenant:
+          type: string
+          example: Monet+
+          allowEmptyValue: true
+      title: ActivateInstanceRequest
+    MethodType:
+      type: string
+      enum:
+        - PASSWORD
+        - SMS
+        - CM
+      description: Distinguishes the context of operation for specified security method.
+    Muid:
+      type: string
+      description: unique identity identifier; only anonymous transactions for CM can have `muid` missing
+      example: demo01
+    Tenant:
+      description: 'Name of tenant (organisation) holding the identity. If not specified, default value from configuration is taken.'
+      type: string
+      example: Monet+
+  parameters:
+    XChannelHeader:
+      name: X-CHANNEL-ID
+      in: header
+      description: XXX channel spec
+      required: false
+      schema:
+        type: string
+        default: 1
+    XTrnHeader:
+      name: X-TRN-ID
+      in: header
+      description: XXX trn id spec
+      required: false
+      schema:
+        type: string
+        default: 2
+tags:
+  - name: Method/instance management
+    description: 'REST APIs for method and instance management (de/activation, un/blocking, ...)'
+  - name: Transaction processing
+    description: 'REST APIs for transaction processing (initiate, verify, cancel, ...)'

@@ -1,0 +1,1269 @@
+openapi: 3.0.0
+info:
+  title: Api Documentation
+  version: '1.0'
+  contact: {}
+  description: Api Documentation
+servers:
+  - url: 'http://172.27.185.100:8084/case-iapi'
+    variables: {}
+paths:
+  /v1/verifyTransaction:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: verifyTransactionUsingPOST
+      description: verifyTransaction
+      operationId: verifyTransactionUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyTransactionRequest'
+        required: true
+        x-send-file-in-body: false
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendVerifyTransactionResponse'
+      deprecated: false
+  /v1/unblockMethod:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: unblockMethodUsingPOST
+      description: unblockMethod
+      operationId: unblockMethodUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnblockMethodRequest'
+        required: true
+        x-send-file-in-body: false
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendUnblockMethodResponse'
+      deprecated: false
+  /v1/unblockInstance:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: unblockInstanceUsingPOST
+      description: unblockInstance
+      operationId: unblockInstanceUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnblockInstanceRequest'
+        required: true
+        x-send-file-in-body: false
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendUnblockInstanceResponse'
+      deprecated: false
+  /v1/transactionState:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: getTransactionStateUsingPOST
+      description: getTransactionState
+      operationId: getTransactionStateUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetTransactionStateRequest'
+        required: true
+        x-send-file-in-body: false
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendGetTransactionStateResponse'
+      deprecated: false
+  /v1/setInstanceProperty:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: setInstancePropertyUsingPOST
+      description: setInstanceProperty
+      operationId: setInstancePropertyUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetInstancePropertyRequest'
+        required: true
+        x-send-file-in-body: false
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendSetInstancePropertyResponse'
+      deprecated: false
+  /v1/ping:
+    get:
+      tags:
+        - case-iapi-rest-controller
+      summary: pingUsingGET
+      description: ping
+      operationId: pingUsingGET
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/IdPortCaseResponse'
+      deprecated: false
+  /v1/methodParams:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: getMethodParamsUsingPOST
+      description: getMethodParams
+      operationId: getMethodParamsUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetMethodParamsRequest'
+        required: true
+        x-send-file-in-body: false
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendGetMethodParamsResponse'
+      deprecated: false
+  /v1/methodInfo:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: getMethodInfoUsingPOST
+      description: getMethodInfo
+      operationId: getMethodInfoUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetMethodInfoRequest'
+        required: true
+        x-send-file-in-body: false
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendGetMethodInfoResponse'
+      deprecated: false
+  /v1/initiateTransaction:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: initiateTransactionUsingPOST
+      description: initiateTransaction
+      operationId: initiateTransactionUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InitiateTransactionRequest'
+        required: true
+        x-send-file-in-body: false
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendInitiateTransactionResponse'
+      deprecated: false
+  /v1/initiateInstance:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: initiateInstanceUsingPOST
+      description: initiateInstance
+      operationId: initiateInstanceUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InitiateInstanceRequest'
+        required: true
+        x-send-file-in-body: false
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendInitiateInstanceResponse'
+      deprecated: false
+  /v1/deactivateMethod:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: deactivateMethodUsingPOST
+      description: deactivateMethod
+      operationId: deactivateMethodUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeactivateMethodRequest'
+        required: true
+        x-send-file-in-body: false
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendDeactivateMethodResponse'
+      deprecated: false
+  /v1/deactivateInstance:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: deactivateInstanceUsingPOST
+      description: deactivateInstance
+      operationId: deactivateInstanceUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeactivateInstanceRequest'
+        required: true
+        x-send-file-in-body: false
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendDeactivateInstanceResponse'
+      deprecated: false
+  /v1/cancelTransaction:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: cancelTransactionUsingPOST
+      description: cancelTransaction
+      operationId: cancelTransactionUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelTransactionRequest'
+        required: true
+        x-send-file-in-body: false
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendCancelTransactionResponse'
+      deprecated: false
+  /v1/blockMethod:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: blockMethodUsingPOST
+      description: blockMethod
+      operationId: blockMethodUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockMethodRequest'
+        required: true
+        x-send-file-in-body: false
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendBlockMethodResponse'
+      deprecated: false
+  /v1/blockInstance:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: blockInstanceUsingPOST
+      description: blockInstance
+      operationId: blockInstanceUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockInstanceRequest'
+        required: true
+        x-send-file-in-body: false
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendBlockInstanceResponse'
+      deprecated: false
+  /v1/activationCode:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: getActivationCodeUsingPOST
+      description: getActivationCode
+      operationId: getActivationCodeUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetActivationCodeRequest'
+        required: true
+        x-send-file-in-body: false
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSendGetActivationCodeResponse'
+      deprecated: false
+  /v1/activateMethod:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: activateMethodUsingPOST
+      description: activateMethod
+      operationId: activateMethodUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivateMethodRequest'
+        required: true
+        x-send-file-in-body: false
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendActivateMethodResponse'
+      deprecated: false
+  /v1/activateInstance:
+    post:
+      tags:
+        - case-iapi-rest-controller
+      summary: activateInstanceUsingPOST
+      description: activateInstance
+      operationId: activateInstanceUsingPOST
+      parameters:
+        - $ref: '#/components/parameters/XChannelHeader'
+        - $ref: '#/components/parameters/XTrnHeader'
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/JSendActivateInstanceResponse'
+      deprecated: false
+      requestBody:
+        description: req
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivateInstanceRequest'
+        required: true
+        x-send-file-in-body: false
+components:
+  schemas:
+    Type:
+      title: Type
+      enum:
+        - PIN
+        - NO_PIN
+        - ALT_SECRET
+        - INFORMATION_MESSAGE
+      type: string
+      description: for CM only
+    State1:
+      title: State1
+      enum:
+        - INITIATED
+        - LOADED
+        - EXPIRED
+        - AUTHORIZED
+        - FAILED
+        - CANCELED
+      type: string
+    State:
+      title: State
+      enum:
+        - ACTIVE
+        - BLOCKED_MAN
+        - BLOCKED_USAGE_TEMP
+        - BLOCKED_USAGE_PERM
+        - DEACTIVATED
+      type: string
+    OperationType:
+      title: OperationType
+      enum:
+        - AUTHENTICATION
+        - AUTHORIZATION
+      type: string
+    OfflineChallenge:
+      title: OfflineChallenge
+      enum:
+        - QR
+        - NONE
+        - QR_NONE
+      type: string
+    MethodType10:
+      title: MethodType10
+      enum:
+        - PASSWORD
+        - SMS
+        - CM
+      type: string
+    MethodType:
+      title: MethodType
+      enum:
+        - PASSWORD
+        - ACTIVATION_CODE
+        - SMS
+        - CM
+        - SPNEGO
+        - TLS_CLIENT
+      type: string
+    AuthorizationFlow:
+      title: AuthorizationFlow
+      enum:
+        - ONLINE
+        - OFFLINE
+        - ONLINE_OFFLINE
+      type: string
+    VerifyTransactionResponse:
+      title: VerifyTransactionResponse
+      type: object
+      properties:
+        instanceInfo:
+          type: string
+          example: |-
+            {
+
+              "instanceId": "PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa",
+
+              "state": "ACTIVE",
+
+              "instanceName": "Swagger instance test name",
+
+              "lastAccess": "2018-07-13T09:28:01Z"
+
+            }
+    VerifyTransactionRequest:
+      title: VerifyTransactionRequest
+      required:
+        - caseId
+        - methodType
+        - muid
+      type: object
+      properties:
+        caseId:
+          type: string
+          description: it is get from /initiateTransaction response
+          example: 41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+        chap:
+          $ref: '#/components/schemas/Chap'
+        code:
+          type: string
+          description: it is computed from /initiateTransaction response
+          example: kuxejDzuNbSh1z6VGzYqo7Bv90IpfRavzGfxBYN9yl6D549zaSawq6+Cb0RDQLUz+vpFCgPBMHs73AQO1TpkVCACO/XiDfAf6P2ad61pPlXN02+L6fARtxXcOqowuM5AdPQioV4Byo1/guSjsT/BGNL0MpIjw5NgMtpB5NNw24+2PYx+8lzZM25NPTNaylTJNXBiCL3kBV/p68hc2p4EDzSSRjgA0uTH1oNMIqyNXXPOFGCKU9RSylrBnwLpCUkq
+        methodType:
+          $ref: '#/components/schemas/MethodType'
+        muid:
+          type: string
+          example: cg2t1
+        tenant:
+          type: string
+          example: Monet+
+    UnblockMethodRequest:
+      title: UnblockMethodRequest
+      required:
+        - methodType
+        - muid
+      type: object
+      properties:
+        methodType:
+          $ref: '#/components/schemas/MethodType'
+        muid:
+          type: string
+          example: cg2t1
+        tenant:
+          type: string
+          example: Monet+
+    UnblockInstanceRequest:
+      title: UnblockInstanceRequest
+      required:
+        - instanceId
+        - methodType
+        - muid
+      type: object
+      properties:
+        instanceId:
+          type: string
+          example: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+        methodType:
+          $ref: '#/components/schemas/MethodType'
+        muid:
+          type: string
+          example: cg2t1
+        tenant:
+          type: string
+          example: Monet+
+    TransactionData:
+      title: TransactionData
+      required:
+        - data
+        - locale
+        - template
+      type: object
+      properties:
+        data:
+          type: string
+          example: PFdZU0lXWVMgeG1sbnM9Imh0dHA6Ly9tZXAubW9uZXRwbHVzLmN6IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB2ZXJzaW9uPSIxLjIiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL21lcC5tb25ldHBsdXMuY3ogbWVwX3d5c2l3eXNfMV8yLnhzZCI+DQoJPHQ+DQoJCTxsdlNwZWMgbD0iTsOhemV2IHRyYW5zYWtjZSIgbHdzPSIiIHdzPSIiPlDFmWlobMOhxaFlbsOtIGRvIGFwbGlrYWNlPC9sdlNwZWM+DQoJCTxsdiBpZD0iQVBQX0lEIiBsPSJBcGxpa2FjZSI+QkxVRTwvbHY+DQoJCTxsdiBpZD0iVFJBTlNBQ1RJT05fSUQiIGw9IklEIG9wZXJhY2UiPjE2MDcyNjAwMDAwMDA1NzwvbHY+DQoJCTxsdiBpZD0iQVBQTElDQVRJT05fTkFNRSIgbD0iTsOhemV2IGFwbGlrYWNlIj5CTFVFPC9sdj4NCgkJPGx2IGlkPSJUSU1FU1RBTVAiIGw9IkRhdHVtIGEgxI1hcyB0cmFuc2FrY2UiPjI2LjA3LjIwMTYgMTU6MjQ6MjA8L2x2Pg0KCQk8bHYgaWQ9IkNBU0VfTkFNRSIgbD0iTsOhemV2IHRyYW5zYWtjZSI+UMWZaWhsw6HFoWVuw60gZG8gYXBsaWthY2U8L2x2Pg0KCTwvdD4NCjwvV1lTSVdZUz4=
+        locale:
+          type: string
+          description: ISO 639-1
+          example: cs
+        template:
+          type: string
+          example: AUTHENTICATION
+      description: "it depends on methodType (for SMS and CM is required, for PWD isn't"
+    SetInstancePropertyRequest:
+      title: SetInstancePropertyRequest
+      required:
+        - instanceId
+        - methodType
+        - muid
+      type: object
+      properties:
+        instanceId:
+          type: string
+          example: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+        methodType:
+          $ref: '#/components/schemas/MethodType'
+        muid:
+          type: string
+          example: cg2t1
+        name:
+          type: string
+          example: Swagger instance test name
+        tenant:
+          type: string
+          example: Monet+
+        validTo:
+          type: string
+          format: date-time
+          example: '2018-07-13T09:28:01Z'
+    Result:
+      title: Result
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        errorSpecificData:
+          $ref: '#/components/schemas/ErrorData'
+        message:
+          type: string
+    ProcessingOptions:
+      title: ProcessingOptions
+      type: object
+      properties:
+        authorizationFlow:
+          $ref: '#/components/schemas/AuthorizationFlow'
+        offlineChallenge:
+          $ref: '#/components/schemas/OfflineChallenge'
+    MethodInfo:
+      title: MethodInfo
+      type: object
+      properties:
+        activeInstances:
+          type: integer
+          format: int32
+        blockedUntil:
+          type: string
+          format: date-time
+        failedAttempts:
+          type: integer
+          format: int32
+        instances:
+          type: array
+          items:
+            type: object
+          description: ''
+        methodType:
+          $ref: '#/components/schemas/MethodType'
+        remainingAttempts:
+          type: integer
+          format: int32
+        state:
+          $ref: '#/components/schemas/State'
+    JSendVerifyTransactionResponse:
+      title: JSendVerifyTransactionResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          $ref: '#/components/schemas/VerifyTransactionResponse'
+    JSendUnblockMethodResponse:
+      title: JSendUnblockMethodResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+    JSendUnblockInstanceResponse:
+      title: JSendUnblockInstanceResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+    JSendSetInstancePropertyResponse:
+      title: JSendSetInstancePropertyResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+    JSendInitiateTransactionResponse:
+      title: JSendInitiateTransactionResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          $ref: '#/components/schemas/InitiateTransactionResponse'
+    JSendInitiateInstanceResponse:
+      title: JSendInitiateInstanceResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          $ref: '#/components/schemas/InitiateInstanceResponse'
+    JSendGetTransactionStateResponse:
+      title: JSendGetTransactionStateResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          $ref: '#/components/schemas/GetTransactionStateResponse'
+    JSendGetMethodParamsResponse:
+      title: JSendGetMethodParamsResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          $ref: '#/components/schemas/GetMethodParamsResponse'
+    JSendGetMethodInfoResponse:
+      title: JSendGetMethodInfoResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          $ref: '#/components/schemas/GetMethodInfoResponse'
+    JSendGetActivationCodeResponse:
+      title: JSendGetActivationCodeResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          $ref: '#/components/schemas/GetActivationCodeResponse'
+    JSendDeactivateMethodResponse:
+      title: JSendDeactivateMethodResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+    JSendDeactivateInstanceResponse:
+      title: JSendDeactivateInstanceResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+    JSendCancelTransactionResponse:
+      title: JSendCancelTransactionResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+    JSendBlockMethodResponse:
+      title: JSendBlockMethodResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+    JSendBlockInstanceResponse:
+      title: JSendBlockInstanceResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+    JSendActivateMethodResponse:
+      title: JSendActivateMethodResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          $ref: '#/components/schemas/ActivateMethodResponse'
+    JSendActivateInstanceResponse:
+      title: JSendActivateInstanceResponse
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          $ref: '#/components/schemas/ActivateInstanceResponse'
+    InitiateTransactionResponse:
+      title: InitiateTransactionResponse
+      type: object
+      properties:
+        caseId:
+          type: string
+          example: 41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+        methodSpecific:
+          type: object
+          example:
+            algType: 2
+            nonce: l9ned9tLn4hpytmcXjLS2hiYcs85iPDwM6Kx5QRxiPoNilzlAi8BoDxt7YJ/nQ1o
+            value:
+              salt: 5dpn/LfE8uoVqoTc+v5ujE1ftnVxhtJ0GkCPZQr37pY=
+              cipherPublicKey: MIHfMA0GCSqGSIb3DQEBAQUAA4HNADCByQKBwQCbA+nA4Oyfe4OiFeYGRK8O02+q3ObJ3IZPhYw7SJ5ULhygpZNhIcL5X0c1c2/yHuVoD7PKmoguQUu5Jj5uRC2ovvC8+X+xPRfohrhw8IXQ/DJC8AqRifCCUWshL8qzA4NNzIDIcMG+gLstSHdcMt6+opQb7AemGPfKiWVYw8wsTI9omkfT5QeMWTGJjBD38DFTLzEua/E56lm4MKDM4rk2PxD0Va0h2aZG7T0F6RwqhM7YYLhbc9LVwr840U9/EfUCAwEAAQ==
+    InitiateTransactionRequest:
+      title: InitiateTransactionRequest
+      required:
+        - methodType
+      type: object
+      properties:
+        methodType:
+          $ref: '#/components/schemas/MethodType10'
+        muid:
+          type: string
+          description: the anonymous transaction is established if MUID is missing
+          example: cg2t1
+        notificationDestination:
+          type: string
+          example: test destination
+        operationType:
+          $ref: '#/components/schemas/OperationType'
+        processingOptions:
+          $ref: '#/components/schemas/ProcessingOptions'
+        tenant:
+          type: string
+          example: Monet+
+        transactionData:
+          $ref: '#/components/schemas/TransactionData'
+        type:
+          $ref: '#/components/schemas/Type'
+        validity:
+          type: string
+          description: use the appropriate timestamp
+          format: date-time
+          example: '2020-10-10T05:05:05.235Z'
+    InitiateInstanceResponse:
+      title: InitiateInstanceResponse
+      type: object
+      properties:
+        instanceInfo:
+          type: string
+          example: |-
+            {
+
+              "instanceId": "PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa",
+
+              "state": "INITIATED",
+
+              "instanceName": "Swagger instance test name"
+
+            }
+    InitiateInstanceRequest:
+      title: InitiateInstanceRequest
+      required:
+        - methodType
+        - muid
+      type: object
+      properties:
+        methodSpecific:
+          type: object
+          description: depends on MethodType
+          example:
+            value: BRS2IIsHA/vX+burYewoRgi+DMXvOb+wabBiUMtNNPM=
+        methodType:
+          $ref: '#/components/schemas/MethodType'
+        muid:
+          type: string
+          example: cg2t1
+        name:
+          type: string
+          example: Swagger instance test name
+        tenant:
+          type: string
+          example: Monet+
+        validTo:
+          type: string
+          format: date-time
+          example: '2018-07-13T09:28:01Z'
+    IdPortCaseResponse:
+      title: IdPortCaseResponse
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+    GetTransactionStateResponse:
+      title: GetTransactionStateResponse
+      type: object
+      properties:
+        muid:
+          type: string
+        state:
+          $ref: '#/components/schemas/State1'
+    GetTransactionStateRequest:
+      title: GetTransactionStateRequest
+      required:
+        - caseId
+      type: object
+      properties:
+        caseId:
+          type: string
+          example: 41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+        muid:
+          type: string
+          description: it is empty for the case of an anonymous transaction
+          example: cg2t1
+    GetMethodParamsResponse:
+      title: GetMethodParamsResponse
+      type: object
+      properties:
+        methodSpecific:
+          type: object
+          example:
+            value:
+              algType: 2
+              salt: 5dpn/LfE8uoVqoTc+v5ujE1ftnVxhtJ0GkCPZQr37pY=
+    GetMethodInfoRequest:
+      title: GetMethodInfoRequest
+      required:
+        - methodTypes
+        - muid
+      type: object
+      properties:
+        methodTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/MethodType'
+          description: ''
+        muid:
+          type: string
+          example: cg2t1
+        tenant:
+          type: string
+          example: Monet+
+    GetActivationCodeResponse:
+      title: GetActivationCodeResponse
+      type: object
+      properties:
+        code:
+          type: string
+          example: '240537'
+        userId:
+          type: string
+          example: cg2t1@monetplus.cz
+        qrData:
+          type: string
+          example: UVI1fDF8QTAzNDk0QkV8Y2cydDFAbW9uZXRwbHVzLmN6fDIzNzQyMQ==
+    DeactivateInstanceRequest:
+      title: DeactivateInstanceRequest
+      required:
+        - instanceId
+        - methodType
+        - muid
+      type: object
+      properties:
+        instanceId:
+          type: string
+          example: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+        methodType:
+          $ref: '#/components/schemas/MethodType'
+        muid:
+          type: string
+          example: cg2t1
+        tenant:
+          type: string
+          example: Monet+
+    Chap:
+      title: Chap
+      required:
+        - authProtocol
+        - challenge
+        - response
+        - username
+      type: object
+      properties:
+        authProtocol:
+          type: integer
+          format: int64
+          example: 1
+        challenge:
+          type: string
+          example: MzM5MjA1
+        response:
+          type: string
+          example: MzM5MjA1
+        username:
+          type: string
+          example: cg2t1
+    CancelTransactionRequest:
+      title: CancelTransactionRequest
+      required:
+        - caseId
+      type: object
+      properties:
+        caseId:
+          type: string
+          example: 41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+        muid:
+          type: string
+          description: it is empty for the case of an anonymous transaction
+          example: cg2t1
+        reason:
+          type: string
+          example: SWAGGER test
+    BlockMethodRequest:
+      title: BlockMethodRequest
+      required:
+        - methodType
+        - muid
+      type: object
+      properties:
+        methodType:
+          $ref: '#/components/schemas/MethodType'
+        muid:
+          type: string
+          example: cg2t1
+        tenant:
+          type: string
+          example: Monet+
+    BlockInstanceRequest:
+      title: BlockInstanceRequest
+      required:
+        - instanceId
+        - methodType
+        - muid
+      type: object
+      properties:
+        instanceId:
+          type: string
+          example: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+        methodType:
+          $ref: '#/components/schemas/MethodType'
+        muid:
+          type: string
+          example: cg2t1
+        tenant:
+          type: string
+          example: Monet+
+    ActivateMethodResponse:
+      title: ActivateMethodResponse
+      type: object
+      properties:
+        methodSpecific:
+          type: string
+          example: |-
+            {
+
+              "algType": 2,
+
+              "salt": "5dpn/LfE8uoVqoTc+v5ujE1ftnVxhtJ0GkCPZQr37pY="
+
+            }
+    ActivateMethodRequest:
+      title: ActivateMethodRequest
+      required:
+        - methodType
+        - muid
+      type: object
+      properties:
+        methodSpecific:
+          type: object
+          example:
+            value:
+              algType: 2
+        methodType:
+          $ref: '#/components/schemas/MethodType'
+        muid:
+          type: string
+          example: cg2t1
+        tenant:
+          type: string
+          example: Monet+
+    ActivateInstanceResponse:
+      title: ActivateInstanceResponse
+      type: object
+      properties:
+        instanceInfo:
+          type: string
+          example: |-
+            {
+
+              "instanceId": "PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa",
+
+              "state": "ACTIVE",
+
+              "instanceName": "Swagger instance test name"
+
+            }
+    ActivateInstanceRequest:
+      title: ActivateInstanceRequest
+      required:
+        - instanceId
+        - methodType
+        - muid
+      type: object
+      properties:
+        instanceId:
+          type: string
+          example: 'PASSWORD:cg2t1:nL6ZlKzC06ecUQV9yQs7ghx37jgutgwa'
+        methodType:
+          $ref: '#/components/schemas/MethodType'
+        muid:
+          type: string
+          example: cg2t1
+        tenant:
+          type: string
+          example: Monet+
+    DeactivateMethodRequest:
+      title: DeactivateMethodRequest
+      required:
+        - methodType
+        - muid
+      type: object
+      properties:
+        methodType:
+          $ref: '#/components/schemas/MethodType'
+        muid:
+          type: string
+          example: cg2t1
+        tenant:
+          type: string
+          example: Monet+
+    ErrorData:
+      title: ErrorData
+      type: object
+      properties:
+        data:
+          type: object
+        wrapperName:
+          type: string
+    GetActivationCodeRequest:
+      title: GetActivationCodeRequest
+      required:
+        - muid
+      type: object
+      properties:
+        muid:
+          type: string
+          example: cg2t1
+        tenant:
+          type: string
+          example: Monet+
+    GetMethodInfoResponse:
+      title: GetMethodInfoResponse
+      type: object
+      properties:
+        methodInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/MethodInfo'
+          description: ''
+    GetMethodParamsRequest:
+      title: GetMethodParamsRequest
+      required:
+        - methodType
+        - muid
+      type: object
+      properties:
+        methodType:
+          $ref: '#/components/schemas/MethodType'
+        muid:
+          type: string
+          example: cg2t1
+        tenant:
+          type: string
+          example: Monet+
+  parameters:
+    XChannelHeader:
+      name: X-CHANNEL-ID
+      in: header
+      description: XXX channel spec
+      required: false
+      schema:
+        type: string
+        default: 1
+    XTrnHeader:
+      name: X-TRN-ID
+      in: header
+      description: XXX trn id spec
+      required: false
+      schema:
+        type: string
+        default: 2
+tags:
+  - name: case-iapi-rest-controller
+    description: Case Iapi Rest Controller

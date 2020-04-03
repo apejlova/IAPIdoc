@@ -1,0 +1,1440 @@
+info:
+  title: idport-case-ms-docker
+  version: 1.3.0-SNAPSHOT
+  contact:
+    name: Monet+
+    url: 'http://www.monetplus.cz'
+paths:
+  /v4/updatePushToken:
+    post:
+      tags:
+        - casems-rest-controller
+      summary: updatePushToken
+      operationId: updatePushTokenUsingPOST
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: X-FORWARDED-FOR
+          in: header
+          required: false
+          example: 127.0.0.1
+          schema:
+            type: string
+        - name: X-TRN-ID
+          in: header
+          required: false
+          example: '2'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatePushTokenResponse'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePushTokenRequest'
+        description: req
+        required: true
+  /v4/updateInstanceProperty:
+    post:
+      tags:
+        - casems-rest-controller
+      summary: updateInstanceProperty
+      operationId: updateInstancePropertyUsingPOST
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: X-FORWARDED-FOR
+          in: header
+          required: false
+          example: 127.0.0.1
+          schema:
+            type: string
+        - name: X-TRN-ID
+          in: header
+          required: false
+          example: '2'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateInstancePropertyResponse'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInstancePropertyRequest'
+        description: req
+        required: true
+  /v4/updateDeviceCertificate:
+    post:
+      tags:
+        - casems-rest-controller
+      summary: updateDeviceCertificate
+      operationId: updateDeviceCertificateUsingPOST
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: X-FORWARDED-FOR
+          in: header
+          required: false
+          example: 127.0.0.1
+          schema:
+            type: string
+        - name: X-TRN-ID
+          in: header
+          required: false
+          example: '2'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateDeviceCertificateResponse'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDeviceCertificateRequest'
+        description: req
+        required: true
+  /v4/rejectTransaction:
+    post:
+      tags:
+        - casems-rest-controller
+      summary: rejectTransaction
+      operationId: rejectTransactionUsingPOST
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: X-FORWARDED-FOR
+          in: header
+          required: false
+          example: 127.0.0.1
+          schema:
+            type: string
+        - name: X-TRN-ID
+          in: header
+          required: false
+          example: '2'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RejectTransactionResponse'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RejectTransactionRequest'
+        description: req
+        required: true
+  /v4/ping:
+    get:
+      tags:
+        - casems-rest-controller
+      summary: ping
+      operationId: pingUsingGET
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: X-FORWARDED-FOR
+          in: header
+          required: false
+          example: 127.0.0.1
+          schema:
+            type: string
+        - name: X-TRN-ID
+          in: header
+          required: false
+          example: '2'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PingResponse'
+      deprecated: false
+  /v4/performAction:
+    post:
+      tags:
+        - casems-rest-controller
+      summary: performAction
+      operationId: performActionUsingPOST
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: X-FORWARDED-FOR
+          in: header
+          required: false
+          example: 127.0.0.1
+          schema:
+            type: string
+        - name: X-SESSIONID
+          in: header
+          description: X-SESSIONID
+          required: false
+          example: c6824b2fdeb17a6166a945cc35e6e0a733f2ad60e85d443ed5d15069b253cf9e
+          schema:
+            type: string
+        - name: X-TRN-ID
+          in: header
+          required: false
+          example: '2'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformActionResponse'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PerformActionRequest'
+        description: req
+        required: true
+  /v4/initiateInternalTransaction:
+    post:
+      tags:
+        - casems-rest-controller
+      summary: initiateInternalTransaction
+      operationId: initiateInternalTransactionUsingPOST
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: X-FORWARDED-FOR
+          in: header
+          required: false
+          example: 127.0.0.1
+          schema:
+            type: string
+        - name: X-TRN-ID
+          in: header
+          required: false
+          example: '2'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InitiateInternalTransactionResponse'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InitiateInternalTransactionRequest'
+        description: req
+        required: true
+  /v4/initiateActivation:
+    post:
+      tags:
+        - casems-rest-controller
+      summary: initiateActivation
+      operationId: initiateActivationUsingPOST
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: X-FORWARDED-FOR
+          in: header
+          required: false
+          example: 127.0.0.1
+          schema:
+            type: string
+        - name: X-TRN-ID
+          in: header
+          required: false
+          example: '2'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InitiateActivationResponse'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InitiateActivationRequest'
+        description: req
+        required: true
+  /v4/getTransaction:
+    post:
+      tags:
+        - casems-rest-controller
+      summary: getTransaction
+      operationId: getTransactionUsingPOST
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: X-FORWARDED-FOR
+          in: header
+          required: false
+          example: 127.0.0.1
+          schema:
+            type: string
+        - name: X-TRN-ID
+          in: header
+          required: false
+          example: '2'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTransactionResponse'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetTransactionRequest'
+        description: req
+        required: true
+  /v4/getSystemProperty:
+    post:
+      tags:
+        - casems-rest-controller
+      summary: getSystemProperty
+      operationId: getSystemPropertyUsingPOST
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: X-FORWARDED-FOR
+          in: header
+          required: false
+          example: 127.0.0.1
+          schema:
+            type: string
+        - name: X-TRN-ID
+          in: header
+          required: false
+          example: '2'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSystemPropertyResponse'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetSystemPropertyRequest'
+        description: req
+        required: true
+  /v4/getPendingTransactions:
+    post:
+      tags:
+        - casems-rest-controller
+      summary: getPendingTransactions
+      operationId: getPendingTransactionsUsingPOST
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: X-FORWARDED-FOR
+          in: header
+          required: false
+          example: 127.0.0.1
+          schema:
+            type: string
+        - name: X-TRN-ID
+          in: header
+          required: false
+          example: '2'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPendingTransactionsResponse'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetPendingTransactionsRequest'
+        description: req
+        required: true
+  /v4/getInstancesCount:
+    post:
+      tags:
+        - casems-rest-controller
+      summary: getInstancesCount
+      operationId: getInstancesCountUsingPOST
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: X-FORWARDED-FOR
+          in: header
+          required: false
+          example: 127.0.0.1
+          schema:
+            type: string
+        - name: X-TRN-ID
+          in: header
+          required: false
+          example: '2'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetInstancesCountResponse'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetInstancesCountRequest'
+        description: req
+        required: true
+  /v4/getInstanceProperty:
+    post:
+      tags:
+        - casems-rest-controller
+      summary: getInstanceProperty
+      operationId: getInstancePropertyUsingPOST
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: X-FORWARDED-FOR
+          in: header
+          required: false
+          example: 127.0.0.1
+          schema:
+            type: string
+        - name: X-TRN-ID
+          in: header
+          required: false
+          example: '2'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetInstancePropertyResponse'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetInstancePropertyRequest'
+        description: req
+        required: true
+  /v4/deactivateInstance:
+    post:
+      tags:
+        - casems-rest-controller
+      summary: deactivateInstance
+      operationId: deactivateInstanceUsingPOST
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: X-FORWARDED-FOR
+          in: header
+          required: false
+          example: 127.0.0.1
+          schema:
+            type: string
+        - name: X-TRN-ID
+          in: header
+          required: false
+          example: '2'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeactivateMobileInstanceResponse'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeactivateMobileInstanceRequest'
+        description: req
+        required: true
+  /v4/authorizeTransaction:
+    post:
+      tags:
+        - casems-rest-controller
+      summary: authorizeTransaction
+      operationId: authorizeTransactionUsingPOST
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: X-FORWARDED-FOR
+          in: header
+          required: false
+          example: 127.0.0.1
+          schema:
+            type: string
+        - name: X-TRN-ID
+          in: header
+          required: false
+          example: '2'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizeTransactionResponse'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorizeTransactionRequest'
+        description: req
+        required: true
+  /v4/activateInstance:
+    post:
+      tags:
+        - casems-rest-controller
+      summary: activateInstance
+      operationId: activateInstanceUsingPOST
+      parameters:
+        - name: X-CHANNEL-ID
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: X-FORWARDED-FOR
+          in: header
+          required: false
+          example: 127.0.0.1
+          schema:
+            type: string
+        - name: X-SESSIONID
+          in: header
+          description: X-SESSIONID
+          required: false
+          example: c6824b2fdeb17a6166a945cc35e6e0a733f2ad60e85d443ed5d15069b253cf9e
+          schema:
+            type: string
+        - name: X-TRN-ID
+          in: header
+          required: false
+          example: '2'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivateMobileInstanceResponse'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivateMobileInstanceRequest'
+        description: req
+        required: true
+tags:
+  - name: casems-rest-controller
+    description: Casems Rest Controller
+components:
+  schemas:
+    ActivateMobileInstanceRequest:
+      type: object
+      required:
+        - activationCode
+        - certificateRequest
+        - deviceInfo
+        - instanceId
+        - secPublicKey
+      properties:
+        activationCode:
+          type: string
+          example: d7BSLqqvbbolQ/ItWW3Fr5jwkPjGsorD72OB6R600a4=
+        authenticationMethods:
+          type: array
+          example:
+            - PIN
+          items:
+            type: string
+            enum:
+              - PIN
+              - FINGERPRINT
+              - BIOMETRICS
+              - NO_PIN
+        certificateRequest:
+          type: string
+          format: byte
+          example: MIICkDCCAXgCAQAwSzFJMEcGA1UEAwxAMDAwYzc5NGJhZTM1NWMzZWZlZDY4N2NmYmRlNzMyMjcyZGM5NmY3MDU1MGY0NjI4NmU4Yjc5NmZjZGU3MzVkNTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALEGyNCj/aFGt9lsWoUlWQG6V+/ya2jlhDnN3OBbxMPh/z083oRnCPag4Yh1fOG8Gl7NwCoLT7OThK6LPD++gxqwTg7VknB/DMrCCA0XDgknvEzYuXPmmoFCIHfZ9FuTnwKFSWlliD5dl16yaI8E0gKUzw+KAScddQiSbpG7pHnbE5QHVtr+TPDMl04rlMbEslX3txAxIMArz5Ae/VtWRVvDJDE8QqHEGomlJlbCDviRSncFDv9p04G+J2Ysj3fuT1f4kQSIDjAiJsRgKALaqpVtsQVTtMAOaFBESHiI0/vnP/RHHO5Q5pfXt39choi0qVlx0zPHD9nnImv7i2nu9m0CAwEAAaAAMA0GCSqGSIb3DQEBCwUAA4IBAQATWMfbPQUBuritSWHXH6sesdcJWqRV8Bf4thzVmDwZ4OxKxI550m3lpUAlSUACW3WtKC57Ry0dYCwCmkYZGh/rZ0KXfMKQtXhR9PD2QOf41HkHuFnqql5E03X4FAojaEh8yDragyOYqrRpUHiVAncsl8XqRCm+IRVKNTSC9F+UFRA7v0gEqZLWNMc9mNUnz8m0PnOexbBS/70aAKSjsdDX7Tg9ENeId8paCZ3Fe8psw31XB9RpIgxf35+UpOF3VFeN1YBeQyFR8oM7kPwrDqmYQ5QIKpobybQkddTymacqrBJnIrcFzj71TrhrAuEO4TIZ24W4tXghxLqFglGQry17
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+        friendlyName:
+          type: string
+          example: LGE LG-H440n
+        instanceId:
+          type: string
+          example: 9e67b9e786c8a156b6135107841ed44c12e93420be366a02ba91f6fd0efc84c3
+        secPublicKey:
+          type: string
+          format: byte
+          example: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsQbI0KP9oUa32WxahSVZAbpX7/JraOWEOc3c4FvEw+H/PTzehGcI9qDhiHV84bwaXs3AKgtPs5OEros8P76DGrBODtWScH8MysIIDRcOCSe8TNi5c+aagUIgd9n0W5OfAoVJaWWIPl2XXrJojwTSApTPD4oBJx11CJJukbukedsTlAdW2v5M8MyXTiuUxsSyVfe3EDEgwCvPkB79W1ZFW8MkMTxCocQaiaUmVsIO+JFKdwUO/2nTgb4nZiyPd+5PV/iRBIgOMCImxGAoAtqqlW2xBVO0wA5oUERIeIjT++c/9Ecc7lDml9e3f1yGiLSpWXHTM8cP2ecia/uLae72bQIDAQAB
+        tenant:
+          type: string
+          example: Monet+
+      title: ActivateMobileInstanceRequest
+    ActivateMobileInstanceResponse:
+      type: object
+      required:
+        - deviceCertificate
+        - encSecretData
+        - result
+        - salt
+        - transaction
+      properties:
+        contextSpecificData:
+          $ref: '#/components/schemas/ContextData'
+        deviceCertificate:
+          type: string
+          format: byte
+          example: MIIDSDCCAjCgAwIBAgIJAQAAAAAAAAWaMA0GCSqGSIb3DQEBCwUAMEIxIzAhBgNVBAMMGkNBU0UgbW9iaWxlIERldmljZSBDZXJ0IENBMQ4wDAYDVQQKDAVNT05FVDELMAkGA1UEBhMCQ1owHhcNMTgwNzE3MTEwODAzWhcNMjEwNzE2MTEwODAzWjBLMUkwRwYDVQQDDEAwOWZkNDk1NDEwOGUxMjA3MTE2ZjU5ZGE4M2RiNzkxODBmYTk2ZDhhMTY2NDBjNDY0M2RmMjM2NWYyYjJmYmU4MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsQbI0KP9oUa32WxahSVZAbpX7/JraOWEOc3c4FvEw+H/PTzehGcI9qDhiHV84bwaXs3AKgtPs5OEros8P76DGrBODtWScH8MysIIDRcOCSe8TNi5c+aagUIgd9n0W5OfAoVJaWWIPl2XXrJojwTSApTPD4oBJx11CJJukbukedsTlAdW2v5M8MyXTiuUxsSyVfe3EDEgwCvPkB79W1ZFW8MkMTxCocQaiaUmVsIO+JFKdwUO/2nTgb4nZiyPd+5PV/iRBIgOMCImxGAoAtqqlW2xBVO0wA5oUERIeIjT++c/9Ecc7lDml9e3f1yGiLSpWXHTM8cP2ecia/uLae72bQIDAQABozgwNjAOBgNVHQ8BAf8EBAMCBPAwFgYDVR0lAQH/BAwwCgYIKwYBBQUHAwIwDAYDVR0TAQH/BAIwADANBgkqhkiG9w0BAQsFAAOCAQEArfrdCHzGOArvxhs7KbBFlsJzF+bQI65L/hoSy97JpmLEkkfnKcq7WJ+k9JcthbOtpj4Y1Rji6eaRtras6S6ja1H5mRVLRY7bS33ai1fZwnOTVcMExfae9hUyWLGyV5/1a37SsXHFnxxvzJ3EbY3Wt1HaMwckCGvsYn3C1m+OBvpdP0O3f4AdkPu9zZYdJ3FAWl99QPxJaWxfpvkwKYObF7mR1KuSMpotXn74pnobmQ/dS9Qyl8VlWORvuzB1Ga7ZNjHgRtj0+qp6Pdm2sJZ9yublKpf8fw4mlIpi5j1w4fz6MWcq6jF8nQ9k/y2K5ycdQhKPvYWj4tHXAsBWEeUS3w==
+        encSecretData:
+          type: string
+          format: byte
+          example: AMb1FrhJWsvo/QMHHFo69pjYh4gUVUgUlPx2KenrAS15eqxoo14r5kJ4JFsGLrgmLrVbE+CwTDF++1HTOCBG4kq2pE8ZMPzoxo4bhzqgG7m2FZ5MURP5nxVzAZgHetqlOhWpekUfYYSh86KRU5CrcIlzB1q51uAC1HaYthYoNkMsJ/tX+i0wl/0OBCfIAKBEQ3eNWOiL0fIIoLRDIl7UCADObk/wzWFB8VIBoujvb8cmc8g6gr3nTS8d2SJ0GLic5fC9lssfDgI9idObry0OZr3o1hRDzj6LxktRRdFpwsW/Fn5NyJ9scIlX1An1JOAKVP5paBVldRKiMn70YYr2dA==
+        result:
+          $ref: '#/components/schemas/Result'
+        salt:
+          type: string
+          format: byte
+          example: ZyzptbmtG7VnA9621BbhcsWMAVFp6BKkHwK0FqxmB3U=
+        transaction:
+          $ref: '#/components/schemas/Transaction'
+      title: ActivateMobileInstanceResponse
+    AppContextData:
+      type: object
+      properties:
+        keepInstances:
+          type: boolean
+      title: AppContextData
+    AppData:
+      type: object
+      properties:
+        chooseKeepInstancesAllowed:
+          type: boolean
+        choosePersonalPinRequired:
+          type: boolean
+        smsDeactivationInfo:
+          type: boolean
+      title: AppData
+    ApplicationData:
+      type: object
+      properties:
+        activationType:
+          type: integer
+          format: int32
+      title: ApplicationData
+    AuthorizeTransactionRequest:
+      type: object
+      required:
+        - authMethod
+        - deviceInfo
+        - instanceId
+        - transactionDigest
+        - transactionId
+        - transactionSignature
+        - userAction
+      properties:
+        authMethod:
+          type: string
+          example: PIN
+          enum:
+            - PIN
+            - FINGERPRINT
+            - BIOMETRICS
+            - NO_PIN
+        contextSpecificData:
+          $ref: '#/components/schemas/ContextSpecificData'
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+        instanceId:
+          type: string
+          example: 9e67b9e786c8a156b6135107841ed44c12e93420be366a02ba91f6fd0efc84c3
+        tenant:
+          type: string
+          example: Monet+
+        transactionDigest:
+          type: string
+          format: byte
+          example: 6S9Pwk+c1PFHJMUv7Mgaj4WU6kfgJBH3S1CXIJ++8zE=
+        transactionId:
+          type: string
+          format: byte
+          example: 41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+        transactionSignature:
+          type: string
+          format: byte
+          example: q6CaUUrdV3XRweI7G60ntBhYKPVv59zHivD2zpSgpLI=
+        userAction:
+          type: string
+          example: authorize
+          enum:
+            - authorize
+            - verifyPin
+            - setPin
+            - registerSecret
+      title: AuthorizeTransactionRequest
+    AuthorizeTransactionResponse:
+      type: object
+      required:
+        - result
+      properties:
+        contextSpecificData:
+          $ref: '#/components/schemas/ContextData'
+        result:
+          $ref: '#/components/schemas/Result'
+      title: AuthorizeTransactionResponse
+    Configuration:
+      type: object
+      title: Configuration
+      properties:
+        algParams:
+          type: object
+          properties:
+            pinOcraSuite:
+              type: string
+            confirmOcraSuite:
+              type: string
+            externalPin:
+              type: boolean
+          example:
+            value:
+              pinOcraSuite: 'OCRA-1:HOTP-SHA256-6:QH64-PSHA256-T30S'
+              confirmOcraSuite: 'OCRA-1:HOTP-SHA256-6:QH64-T30S'
+              externalPin: true
+        algType:
+          type: string
+          example: '2'
+    ContextData:
+      type: object
+      properties:
+        activationCode:
+          type: string
+        appContextData:
+          $ref: '#/components/schemas/AppData'
+        encSecretData:
+          type: string
+          format: byte
+        salt:
+          type: string
+          format: byte
+        transaction:
+          $ref: '#/components/schemas/Transaction'
+      title: ContextData
+    ContextSpecificData:
+      type: object
+      properties:
+        appContextData:
+          $ref: '#/components/schemas/AppContextData'
+        businessContext:
+          type: string
+          example: businessContext
+        encPinHashData:
+          type: string
+          format: byte
+          example: AMb1FrhJWsvo/QMHHFo69pjYh4gUVUgUlPx2KenrAS15eqxoo14r5kJ4JFsGLrgmLrVbE+CwTDF++1HTOCBG4kq2pE8ZMPzoxo4bhzqgG7m2FZ5MURP5nxVzAZgHetqlOhWpekUfYYSh86KRU5CrcIlzB1q51uAC1HaYthYoNkMsJ/tX+i0wl/0OBCfIAKBEQ3eNWOiL0fIIoLRDIl7UCADObk/wzWFB8VIBoujvb8cmc8g6gr3nTS8d2SJ0GLic5fC9lssfDgI9idObry0OZr3o1hRDzj6LxktRRdFpwsW/Fn5NyJ9scIlX1An1JOAKVP5paBVldRKiMn70YYr2dA==
+          description: 'it depends on userAction value (userAction = SET_PIN -> encPinHashData is required)'
+        secPublicKey:
+          type: string
+          format: byte
+          example: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsQbI0KP9oUa32WxahSVZAbpX7/JraOWEOc3c4FvEw+H/PTzehGcI9qDhiHV84bwaXs3AKgtPs5OEros8P76DGrBODtWScH8MysIIDRcOCSe8TNi5c+aagUIgd9n0W5OfAoVJaWWIPl2XXrJojwTSApTPD4oBJx11CJJukbukedsTlAdW2v5M8MyXTiuUxsSyVfe3EDEgwCvPkB79W1ZFW8MkMTxCocQaiaUmVsIO+JFKdwUO/2nTgb4nZiyPd+5PV/iRBIgOMCImxGAoAtqqlW2xBVO0wA5oUERIeIjT++c/9Ecc7lDml9e3f1yGiLSpWXHTM8cP2ecia/uLae72bQIDAQAB
+          description: 'it depends on userAction value (userAction is in {VERIFY_PIN, REGISTER_SECRET} -> secPublicKey is required)'
+        type:
+          type: string
+          example: VERIFY_PIN
+          enum:
+            - VERIFY_PIN
+            - CHANGE_PIN
+            - ALT_SECRET_ACTIVATION
+      title: ContextSpecificData
+    Data:
+      type: object
+      properties:
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/PingResult'
+      title: Data
+    DeactivateMobileInstanceRequest:
+      type: object
+      required:
+        - deviceInfo
+        - instanceId
+      properties:
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+        instanceId:
+          type: string
+          example: 9e67b9e786c8a156b6135107841ed44c12e93420be366a02ba91f6fd0efc84c3
+        tenant:
+          type: string
+          example: Monet+
+      title: DeactivateMobileInstanceRequest
+    DeactivateMobileInstanceResponse:
+      type: object
+      required:
+        - result
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+      title: DeactivateMobileInstanceResponse
+    DeviceInfo:
+      type: object
+      required:
+        - appVersion
+        - deviceManufacturer
+        - deviceModel
+        - flags
+        - hwId
+        - osVersion
+        - platform
+      properties:
+        appVersion:
+          type: string
+          example: 1.3.9
+        authenticationMethods:
+          type: array
+          items:
+            type: string
+            example: PIN
+        deviceManufacturer:
+          type: string
+          example: LG
+        deviceModel:
+          type: string
+          example: H8324
+        flags:
+          type: string
+          example: AAAAAAAAAAA=
+        geoLocation:
+          type: string
+          example: 49.2707710;17.7213074
+        hwId:
+          type: string
+          example: eeb0dba54e565f99-1486128428103--121527461765273515
+        osVersion:
+          type: string
+          example: '6.0'
+        platform:
+          type: integer
+          format: int32
+          example: 1
+      title: DeviceInfo
+    GetInstancePropertyRequest:
+      type: object
+      required:
+        - deviceInfo
+        - instanceId
+        - property
+      properties:
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+        instanceId:
+          type: string
+          example: 9e67b9e786c8a156b6135107841ed44c12e93420be366a02ba91f6fd0efc84c3
+        property:
+          type: array
+          example:
+            - case.name
+          description: "property is set by the pattern \"domain.key\"\n\"domain = [\"case\", \"mepconfig\"]\n\"case.key\" = [\"name\"] \n\"mepconfig.key\" = value of KEY column stored in DB table CMN_PROPERTY"
+          items:
+            type: string
+        tenant:
+          type: string
+          example: Monet+
+      title: GetInstancePropertyRequest
+    GetInstancePropertyResponse:
+      type: object
+      required:
+        - properties
+        - result
+      properties:
+        properties:
+          type: object
+          example:
+            case.name: instance name
+        result:
+          $ref: '#/components/schemas/Result'
+      title: GetInstancePropertyResponse
+    GetInstancesCountRequest:
+      type: object
+      required:
+        - deviceInfo
+        - instanceId
+      properties:
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+        instanceId:
+          type: string
+          example: 9e67b9e786c8a156b6135107841ed44c12e93420be366a02ba91f6fd0efc84c3
+        tenant:
+          type: string
+          example: Monet+
+      title: GetInstancesCountRequest
+    GetInstancesCountResponse:
+      type: object
+      required:
+        - count
+        - result
+      properties:
+        count:
+          type: integer
+          format: int32
+          example: 1
+        result:
+          $ref: '#/components/schemas/Result'
+      title: GetInstancesCountResponse
+    GetPendingTransactionsRequest:
+      type: object
+      required:
+        - deviceInfo
+        - instanceId
+      properties:
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+        instanceId:
+          type: string
+          example: 9e67b9e786c8a156b6135107841ed44c12e93420be366a02ba91f6fd0efc84c3
+        tenant:
+          type: string
+          example: Monet+
+        transactionTypes:
+          type: array
+          example:
+            - PIN
+          items:
+            type: string
+            enum:
+              - PIN
+              - NO_PIN
+              - INFORMATION_MESSAGE
+              - ALT_SECRET_ACTIVATION
+      title: GetPendingTransactionsRequest
+    GetPendingTransactionsResponse:
+      type: object
+      required:
+        - result
+        - transactions
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+      title: GetPendingTransactionsResponse
+    GetSystemPropertyRequest:
+      type: object
+      required:
+        - deviceInfo
+        - instanceId
+        - property
+      properties:
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+        instanceId:
+          type: string
+          example: 9e67b9e786c8a156b6135107841ed44c12e93420be366a02ba91f6fd0efc84c3
+        property:
+          type: array
+          example:
+            - idport.qr1.version
+          items:
+            type: string
+        tenant:
+          type: string
+          example: Monet+
+      title: GetSystemPropertyRequest
+    GetSystemPropertyResponse:
+      type: object
+      required:
+        - properties
+        - result
+      properties:
+        properties:
+          type: object
+          example:
+            idport.gr1.version: 2
+        result:
+          $ref: '#/components/schemas/Result'
+      title: GetSystemPropertyResponse
+    GetTransactionRequest:
+      type: object
+      required:
+        - deviceInfo
+        - instanceId
+        - transactionId
+      properties:
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+        instanceId:
+          type: string
+          example: 9e67b9e786c8a156b6135107841ed44c12e93420be366a02ba91f6fd0efc84c3
+        previewOnly:
+          type: boolean
+        tenant:
+          type: string
+          example: Monet+
+        transactionId:
+          type: string
+          format: byte
+          example: 41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+      title: GetTransactionRequest
+    GetTransactionResponse:
+      type: object
+      required:
+        - result
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        transaction:
+          $ref: '#/components/schemas/Transaction'
+      title: GetTransactionResponse
+    InitiateActivationRequest:
+      type: object
+      required:
+        - deviceInfo
+        - nickname
+      properties:
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+        instanceId:
+          type: string
+          example: 9e67b9e786c8a156b6135107841ed44c12e93420be366a02ba91f6fd0efc84c3
+        nickname:
+          type: string
+          example: d7BSLqqvbbolQ/ItWW3Fr9b7/LRVAffUfeFM1WWPqRyz53yLUQE97CplHutrub50
+        tenant:
+          type: string
+          example: Monet+
+      title: InitiateActivationRequest
+    InitiateActivationResponse:
+      type: object
+      required:
+        - configuration
+        - instanceId
+        - result
+      properties:
+        configuration:
+          $ref: '#/components/schemas/Configuration'
+        instanceId:
+          type: string
+          example: 9e67b9e786c8a156b6135107841ed44c12e93420be366a02ba91f6fd0efc84c3
+        result:
+          $ref: '#/components/schemas/Result'
+      title: InitiateActivationResponse
+    InitiateInternalTransactionRequest:
+      type: object
+      required:
+        - contextSpecificData
+        - deviceInfo
+        - instanceId
+      properties:
+        contextSpecificData:
+          $ref: '#/components/schemas/ContextSpecificData'
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+        instanceId:
+          type: string
+          example: 9e67b9e786c8a156b6135107841ed44c12e93420be366a02ba91f6fd0efc84c3
+        tenant:
+          type: string
+          example: Monet+
+      title: InitiateInternalTransactionRequest
+    InitiateInternalTransactionResponse:
+      type: object
+      required:
+        - result
+        - transaction
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        transaction:
+          $ref: '#/components/schemas/Transaction'
+      title: InitiateInternalTransactionResponse
+    PerformActionRequest:
+      type: object
+      required:
+        - contextSpecificData
+        - deviceInfo
+        - instanceId
+        - userAction
+      properties:
+        contextSpecificData:
+          $ref: '#/components/schemas/ContextData'
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+        instanceId:
+          type: string
+          example: 9e67b9e786c8a156b6135107841ed44c12e93420be366a02ba91f6fd0efc84c3
+        tenant:
+          type: string
+          example: Monet+
+        userAction:
+          type: string
+          example: verifyActivationCode
+          enum:
+            - verifyActivationCode
+      title: PerformActionRequest
+    PerformActionResponse:
+      type: object
+      required:
+        - result
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+      title: PerformActionResponse
+    PingResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        data:
+          $ref: '#/components/schemas/Data'
+        message:
+          type: string
+        status:
+          type: string
+          enum:
+            - success
+            - fail
+            - error
+      title: PingResponse
+    PingResult:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        detail:
+          type: object
+        resource:
+          type: string
+      title: PingResult
+    RejectTransactionRequest:
+      type: object
+      required:
+        - deviceInfo
+        - instanceId
+        - rejectionReasonCode
+        - transactionId
+      properties:
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+        instanceId:
+          type: string
+          example: 9e67b9e786c8a156b6135107841ed44c12e93420be366a02ba91f6fd0efc84c3
+        rejectionReasonCode:
+          type: integer
+          format: int32
+          example: 0
+        rejectionReasonMessage:
+          type: string
+          example: SWAGGER test
+        tenant:
+          type: string
+          example: Monet+
+        transactionId:
+          type: string
+          format: byte
+          example: 41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+      title: RejectTransactionRequest
+    RejectTransactionResponse:
+      type: object
+      required:
+        - result
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+      title: RejectTransactionResponse
+    Result:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+          example: 0
+        errorSpecificData:
+          $ref: '#/components/schemas/ErrorData_object_'
+      title: Result
+    Transaction:
+      type: object
+      required:
+        - created
+        - data
+        - expiration
+        - id
+      properties:
+        authenticationMethods:
+          type: array
+          items:
+            type: string
+            example: PIN
+        created:
+          type: string
+          format: date-time
+          example: '2018-07-17T12:39:10.183Z'
+        data:
+          type: string
+          format: byte
+          example: U1RYMCVUUk5fSUQlJVRSTl9USU1FJVMwJENBU0VNb2JpbGUgdGVjaG5pY2FsIHRyYW5zYWN0aW9uJCo=
+        expiration:
+          type: string
+          format: date-time
+          example: '2018-07-17T12:44:10.173Z'
+        id:
+          type: string
+          format: byte
+          example: 41QHE14SDOdId+d+g9isQVRgpkPKRRAoYWcaLVt//BdW4VjjSf0QfEmMMPzRGo6wl1TCcx5GUtGFr8sfh315Tuj4AT/ea4sSyv9z7Tgklo2RhV9zMhDOh7bBI5vp+uPf
+        type:
+          type: string
+          example: ACTIVATION
+          enum:
+            - ACTIVATION
+            - PIN
+            - NO_PIN
+            - VERIFY_PIN
+            - CHANGE_PIN
+            - SENSITIVE_DATA_PIN
+            - AUTHENTICATED_CALL
+            - ALT_SECRET_ACTIVATION
+            - INFORMATION_MESSAGE
+            - PIN_ONLINE
+            - PIN_OFFLINE
+      title: Transaction
+    UpdateDeviceCertificateRequest:
+      type: object
+      required:
+        - certificateRequest
+        - deviceInfo
+        - instanceId
+      properties:
+        certificateRequest:
+          type: string
+          format: byte
+          example: MIICkDCCAXgCAQAwSzFJMEcGA1UEAwxAMDAwYzc5NGJhZTM1NWMzZWZlZDY4N2NmYmRlNzMyMjcyZGM5NmY3MDU1MGY0NjI4NmU4Yjc5NmZjZGU3MzVkNTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALEGyNCj/aFGt9lsWoUlWQG6V+/ya2jlhDnN3OBbxMPh/z083oRnCPag4Yh1fOG8Gl7NwCoLT7OThK6LPD++gxqwTg7VknB/DMrCCA0XDgknvEzYuXPmmoFCIHfZ9FuTnwKFSWlliD5dl16yaI8E0gKUzw+KAScddQiSbpG7pHnbE5QHVtr+TPDMl04rlMbEslX3txAxIMArz5Ae/VtWRVvDJDE8QqHEGomlJlbCDviRSncFDv9p04G+J2Ysj3fuT1f4kQSIDjAiJsRgKALaqpVtsQVTtMAOaFBESHiI0/vnP/RHHO5Q5pfXt39choi0qVlx0zPHD9nnImv7i2nu9m0CAwEAAaAAMA0GCSqGSIb3DQEBCwUAA4IBAQATWMfbPQUBuritSWHXH6sesdcJWqRV8Bf4thzVmDwZ4OxKxI550m3lpUAlSUACW3WtKC57Ry0dYCwCmkYZGh/rZ0KXfMKQtXhR9PD2QOf41HkHuFnqql5E03X4FAojaEh8yDragyOYqrRpUHiVAncsl8XqRCm+IRVKNTSC9F+UFRA7v0gEqZLWNMc9mNUnz8m0PnOexbBS/70aAKSjsdDX7Tg9ENeId8paCZ3Fe8psw31XB9RpIgxf35+UpOF3VFeN1YBeQyFR8oM7kPwrDqmYQ5QIKpobybQkddTymacqrBJnIrcFzj71TrhrAuEO4TIZ24W4tXghxLqFglGQry17
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+        instanceId:
+          type: string
+          example: 9e67b9e786c8a156b6135107841ed44c12e93420be366a02ba91f6fd0efc84c3
+        tenant:
+          type: string
+          example: Monet+
+      title: UpdateDeviceCertificateRequest
+    UpdateDeviceCertificateResponse:
+      type: object
+      required:
+        - deviceCertificate
+        - result
+      properties:
+        deviceCertificate:
+          type: string
+          format: byte
+          example: MIICkDCCAXgCAQAwSzFJMEcGA1UEAwxAMDAwYzc5NGJhZTM1NWMzZWZlZDY4N2NmYmRlNzMyMjcyZGM5NmY3MDU1MGY0NjI4NmU4Yjc5NmZjZGU3MzVkNTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALEGyNCj/aFGt9lsWoUlWQG6V+/ya2jlhDnN3OBbxMPh/z083oRnCPag4Yh1fOG8Gl7NwCoLT7OThK6LPD++gxqwTg7VknB/DMrCCA0XDgknvEzYuXPmmoFCIHfZ9FuTnwKFSWlliD5dl16yaI8E0gKUzw+KAScddQiSbpG7pHnbE5QHVtr+TPDMl04rlMbEslX3txAxIMArz5Ae/VtWRVvDJDE8QqHEGomlJlbCDviRSncFDv9p04G+J2Ysj3fuT1f4kQSIDjAiJsRgKALaqpVtsQVTtMAOaFBESHiI0/vnP/RHHO5Q5pfXt39choi0qVlx0zPHD9nnImv7i2nu9m0CAwEAAaAAMA0GCSqGSIb3DQEBCwUAA4IBAQATWMfbPQUBuritSWHXH6sesdcJWqRV8Bf4thzVmDwZ4OxKxI550m3lpUAlSUACW3WtKC57Ry0dYCwCmkYZGh/rZ0KXfMKQtXhR9PD2QOf41HkHuFnqql5E03X4FAojaEh8yDragyOYqrRpUHiVAncsl8XqRCm+IRVKNTSC9F+UFRA7v0gEqZLWNMc9mNUnz8m0PnOexbBS/70aAKSjsdDX7Tg9ENeId8paCZ3Fe8psw31XB9RpIgxf35+UpOF3VFeN1YBeQyFR8oM7kPwrDqmYQ5QIKpobybQkddTymacqrBJnIrcFzj71TrhrAuEO4TIZ24W4tXghxLqFglGQry17
+        result:
+          $ref: '#/components/schemas/Result'
+      title: UpdateDeviceCertificateResponse
+    UpdateInstancePropertyRequest:
+      type: object
+      required:
+        - deviceInfo
+        - instanceId
+        - property
+        - propertyValue
+      properties:
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+        instanceId:
+          type: string
+          example: 9e67b9e786c8a156b6135107841ed44c12e93420be366a02ba91f6fd0efc84c3
+        property:
+          type: string
+          example: case.name
+          description: "property is set by the pattern \"domain.key\"\n\"domain = [\"case\", \"mepconfig\"]\n\"case.key\" = [\"name\"] \n\"mepconfig.key\" = value of KEY column stored in DB table CMN_PROPERTY"
+        propertyValue:
+          type: object
+          example: instance name
+        tenant:
+          type: string
+          example: Monet+
+      title: UpdateInstancePropertyRequest
+    UpdateInstancePropertyResponse:
+      type: object
+      required:
+        - result
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+      title: UpdateInstancePropertyResponse
+    UpdatePushTokenRequest:
+      type: object
+      required:
+        - deviceInfo
+        - instanceId
+        - pushToken
+      properties:
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
+        instanceId:
+          type: string
+          example: 9e67b9e786c8a156b6135107841ed44c12e93420be366a02ba91f6fd0efc84c3
+        pushToken:
+          type: string
+          example: APA91bGu74FBdQAKW2WvrwVdNOCVzdJ-ChMyEk5Y1iLZeVFHEeZj3WsXx4ZHnMMZo08NbmupHhYgJ0q9fa-FArYGjsCQOwoLHMhq9GEM_Dc0h5mF02ffz18LrD7LenrS7XMfFavwyYAG
+        pushTokenType:
+          type: string
+          enum:
+            - FIREBASE
+            - VENDOR
+        tenant:
+          type: string
+          example: Monet+
+      title: UpdatePushTokenRequest
+    UpdatePushTokenResponse:
+      type: object
+      required:
+        - result
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+      title: UpdatePushTokenResponse
+    ErrorData_object_:
+      type: object
+      properties:
+        data:
+          type: object
+        wrapperName:
+          type: string
+      title: ErrorData«object»
+servers:
+  - url: '//localhost:8082/'
+openapi: 3.0.0

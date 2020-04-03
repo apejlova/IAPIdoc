@@ -11,18 +11,10 @@ info:
 servers:
   - url: 'http://localhost:8080'
 paths:
-  /activateMethod:
-    post:
-      summary: Activate method
-      operationId: post-activateMethod
-      tags:
-        - Method/instance management
   /initiateTransaction:
     post:
       summary: Initiate Transaction
       operationId: post-initiateTransaction
-      tags:
-        - Transaction processing
       responses:
         '200':
           description: OK
@@ -177,7 +169,9 @@ paths:
                     - ALT_SECRET
                 transactionData:
                   type: object
-                  description: "XXX (why?) it depends on methodType (for SMS and CM is required, for PWD isn't)"
+                  description: |-
+                    for methods SMS and CM are transaction data visualized to user (SMS, mobile application) and they are part of the cryptography for transaction signature, so they are required
+                    for method PASSWORD the transaction data are optional just for record, cryptography signature is based on randnom nonce and password hash
                   properties:
                     data:
                       type: string
@@ -312,6 +306,14 @@ paths:
                   processingOptions:
                     authorizationFlow: ONLINE
         description: 'Not all parameters are necessary for all use cases, it depends mainly on methodType. See examples for more detail.'
+      tags:
+        - Transaction processing
+  /activateMethod:
+    post:
+      summary: Activate method
+      operationId: post-activateMethod
+      tags:
+        - Method/instance management
 components:
   schemas:
     MethodType:
